@@ -88,37 +88,41 @@ Page({
   },
   // 页面数据提交的函数
   formSubmit: function (e) {
+    var data=this.data
     console.log(e);
     var n = 1;
-    if (this.data.listEvent.dimension === '' || this.data.listEvent.header === '') {
-      n = 0;
-    }
-    if (n === 1) {
-      wx.showToast({
-        icon: 'none',
-        title: '提交成功',
-        duration: 2000
-      });
-      var tags0 = this.data.tags[0]
-      var tags1 = this.data.tags[1]
-      var tags2 = this.data.tags[2]
-      var index = this.data.listEvent.index - 0
-      var dimension = this.data.listEvent.dimension
-      var header = this.data.listEvent.header
-      var imgPath = this.data.listEvent.imgPath
-      setTimeout(function () {
-        //要延时执行的代码
-        wx.reLaunch({
-          url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header + '&imgPath=' + imgPath,
-        })
-      }, 500)
-    } else {
-      wx.showToast({
-        icon: 'none',
-        title: '未添加标题或事件请重新添加',
-        duration: 2000
-      });
-    }
+    setTimeout(function () {
+      //要延时执行的代码
+      if (data.listEvent.dimension === '' || data.listEvent.header === '') {
+        n = 0;
+      }
+      if (n === 1) {
+        wx.showToast({
+          icon: 'none',
+          title: '提交成功',
+          duration: 2000
+        });
+        var tags0 = data.tags[0]
+        var tags1 = data.tags[1]
+        var tags2 = data.tags[2]
+        var index = data.listEvent.index - 0
+        var dimension = data.listEvent.dimension
+        var header = data.listEvent.header
+        var imgPath = data.listEvent.imgPath
+        setTimeout(function () {
+          //要延时执行的代码
+          wx.reLaunch({
+            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header + '&imgPath=' + imgPath,
+          })
+        }, 500)
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: '未添加标题或事件请重新添加',
+          duration: 2000
+        });
+      }
+    }, 20)
   },
   // 当输入事件的事件的光标消失时的事件
   whenblur(e) {

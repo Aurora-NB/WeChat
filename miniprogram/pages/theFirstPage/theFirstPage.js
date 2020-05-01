@@ -51,10 +51,12 @@ Page({
   onLoad: function (options) {
     var listEvent = this.data.listEvent
     var l = listEvent.length
+    var data=new Date()
+    var time=data.toLocaleDateString()
     if (options.dimension) {
       listEvent.push({
-        dimension: options.dimension,
-        detail: this.options.detail,
+        dimension: options.header,
+        detail: options.dimension,
         tag: [
           options.tags0 === 'undefined' ? '' : options.tags0,
           options.tags1 === 'undefined' ? '' : options.tags1,
@@ -62,7 +64,8 @@ Page({
         ],
         index: l,
         hasdone: false,
-        imgpath: options.imgpath
+        imgpath: options.imgpath,
+        time:time
       })
       this.setData({
         listEvent: listEvent
