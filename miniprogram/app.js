@@ -1,6 +1,19 @@
 //app.js
 App({
   onLaunch: function () {
+    if(!wx.cloud)
+    {
+      console.error("请使用2.3.3及以上的基础库");
+    }
+    else
+    {
+      wx.cloud.init(
+        {
+          env:'project-agzop',
+          traceUser:true
+        }
+      )
+    }
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

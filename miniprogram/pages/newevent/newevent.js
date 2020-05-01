@@ -88,6 +88,19 @@ Page({
   },
   // 页面数据提交的函数
   formSubmit: function (e) {
+    // wx.cloud.callFunction({
+    //   // 云函数名称
+    //   name: 'Demo01',
+    //   // 传给云函数的参数
+    //   data: {
+    //     a: 1,
+    //     b: 2,
+    //   },
+    //   success: function(res) {
+    //     console.log(res.result.sum) // 3
+    //   },
+    //   fail: console.error
+    // })
     var data=this.data
     console.log(e);
     var n = 1;
@@ -185,7 +198,7 @@ Page({
   },
   // 当标签提交的样式
   biaoqianconfim(e) {
-    console.log(e)
+   console.log(e)
     var tags = this.data.tags
     var tagscolor = this.data.tagscolor
     var tagsmirrorcolor = this.data.tagsmirrorcolor
@@ -202,7 +215,6 @@ Page({
         tagsmirrorcolor: tagsmirrorcolor
       })
     }
-
   },
   // 删除标签的函数
   deletetap(e) {
@@ -216,6 +228,7 @@ Page({
       tagsmirrorcolor: tagsmirrorcolor
     })
   },
+  // 当标签的光标消失
   tapsblur(e){
     var tags = this.data.tags
     var tagscolor = this.data.tagscolor
