@@ -40,20 +40,16 @@ Page({
         }
       })
     }
-
+    
   },
   getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+      console.log(e)
+      app.globalData.userInfo = e.detail.userInfo
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
   },
-  about:function(e){
-    wx.navigateTo({
-      url: '../about/about'
-    })
-  }
+
 
 })

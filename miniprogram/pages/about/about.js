@@ -5,12 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dimension: '事件',
-    index: 0,
-    hasdone: false,
-    time: "",
-    tag: [''],
-    detail: '',
+
   },
 
   /**

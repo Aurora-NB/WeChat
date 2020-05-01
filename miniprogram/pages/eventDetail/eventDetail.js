@@ -1,12 +1,11 @@
 // pages/eventDetail/eventDetail.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    dimension: '事件',
-      index: 0,
-      hasdone: false,
-      time: "2000-08-11",
-      tag: ['健身', '运动', '开会'],
-      detail: 'detail1',
+
   },
 
   /**
@@ -14,13 +13,6 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    this.setData({
-      dimension: options.dimension,
-      index: options.index,
-      hasdone: options.hasdone,
-      time: options.time,
-      detail: options.detail,
-    })
   },
 
   /**
