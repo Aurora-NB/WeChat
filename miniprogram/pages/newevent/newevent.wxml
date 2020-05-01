@@ -17,9 +17,9 @@
 			</view>
 		</block>
 
-		<!-- 标签输入的循环 -->
+		<!-- 标签输入 -->
 		<view class="biaoqianview">
-			<input wx:if="{{tags.length<3}}" class="biaoqianinput" placeholder="在这里输入标签" bindconfirm="biaoqianconfim" value="{{baioqianvalue}}" maxlength="7">
+			<input wx:if="{{tags.length<3}}" class="biaoqianinput" placeholder="在这里输入标签" bindconfirm="biaoqianconfim" bindblur="tapsblur"  value="{{baioqianvalue}}" maxlength="7">
 			</input>
 		</view>
 	</view>
