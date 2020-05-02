@@ -126,30 +126,6 @@ Page({
   },
   // 当输入事件的事件的光标消失时的事件
   whenblur(e) {
-    wx.cloud.callFunction({
-      name: 'Demo01',
-      data: {
-        a: 1,
-        b: 2
-      },
-      success: res=>{
-        console.log(res);
-        wx.showToast({
-          title: '调用成功',
-        })
-        
-        this.setData({
-          result: JSON.stringify(res.result)
-        })
-      },
-      fail: err => {
-        wx.showToast({
-          icon: 'none',
-          title: '调用失败',
-        })
-        console.error('[云函数] [sum] 调用失败：', err)
-      }
-    })
     var listEvent = this.data.listEvent
     listEvent.dimension = e.detail.value
     this.setData({
