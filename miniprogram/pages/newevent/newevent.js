@@ -91,6 +91,7 @@ Page({
     var data=this.data
     console.log(e);
     var n = 1;
+
     setTimeout(function () {
       //要延时执行的代码
       if (data.listEvent.dimension === '' || data.listEvent.header === '') {
@@ -117,7 +118,11 @@ Page({
         setTimeout(function () {
           //要延时执行的代码
           wx.reLaunch({
+<<<<<<< HEAD
             url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header + '&imgPath=' + imgPath+' &tagsmirrorcolor1='+tagsmirrorcolor1+'&tagsmirrorcolor2='+tagsmirrorcolor2+'&tagsmirrorcolor3='+tagsmirrorcolor3,
+=======
+            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header + '&imgPath=' + imgPath + '&type=newEvent',
+>>>>>>> 07449fe8c64d9fa26d8740fdb4253dff3c31ef49
           })
         }, 500)
       } else {
@@ -128,6 +133,7 @@ Page({
         });
       }
     }, 20)
+
   },
   // 当输入事件的事件的光标消失时的事件
   whenblur(e) {

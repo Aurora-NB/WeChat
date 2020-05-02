@@ -16,8 +16,8 @@
 			<image src="../../image/arrow.png" class="arrow"></image>
 		</view>
 
-		<view class="options">
-			<navigator url="../about/about" open-type="navigate">关于</navigator>
+		<view class="options" bindtap="about">
+			<text  style="font-size:40rpx;" >关于</text>
 			<image src="../../image/arrow.png" class="arrow"></image>
 		</view>
 
