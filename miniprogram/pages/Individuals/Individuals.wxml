@@ -16,8 +16,8 @@
 			<image src="../../image/arrow.png" class="arrow"></image>
 		</view>
 
-		<view class="options">
-			<text  style="font-size:40rpx;" bindtap="about">关于</text>
+		<view class="options" bindtap="about">
+			<text  style="font-size:40rpx;" >关于</text>
 			<image src="../../image/arrow.png" class="arrow"></image>
 		</view>
 
