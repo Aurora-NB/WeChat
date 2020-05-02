@@ -13,7 +13,8 @@ Page({
       time: "2000-08-11",
       tag: ['健身', '运动', '开会'],
       detail: '',
-      imgpath: ''
+      imgpath: '',
+      tagscolor:[]
     }, {
       dimension: "事件2",
       index: 1,
@@ -21,7 +22,8 @@ Page({
       time: "2000-08-11",
       tag: ['健身', '运动', '开会'],
       detail: '',
-      imgpath: ''
+      imgpath: '',
+      tagscolor:['red','green','yellow']
     }, {
       dimension: "事件3",
       index: 2,
@@ -29,7 +31,8 @@ Page({
       time: "2000-08-11",
       tag: ['健身', '运动', '开会'],
       detail: '',
-      imgpath: ''
+      imgpath: '',
+      tagscolor:['red','green','yellow']
     }, {
       dimension: "事件4",
       index: 3,
@@ -37,7 +40,8 @@ Page({
       time: "2000-08-11",
       tag: ['健身', '运动', '开会'],
       detail: '',
-      imgpath: ''
+      imgpath: '',
+      tagscolor:['red','green','yellow']
     }, {
       dimension: "事件5",
       index: 4,
@@ -45,7 +49,8 @@ Page({
       time: "2000-08-11",
       tag: ['健身', '运动', '开会'],
       detail: '',
-      imgpath: ''
+      imgpath: '',
+      tagscolor:['red','green','yellow']
     }]
   },
   onLoad: function (options) {
@@ -65,7 +70,10 @@ Page({
         index: l,
         hasdone: false,
         imgpath: options.imgpath,
-        time:time
+        time:time,
+        tagscolor:[options.tagsmirrorcolor1=== 'undefined' ? '' : options.tagsmirrorcolor1
+          ,               options.tagsmirrorcolor2=== 'undefined' ? '' : options.tagsmirrorcolor2
+          ,               options.tagsmirrorcolor3=== 'undefined' ? '' :options.tagsmirrorcolor3 ]
       })
       this.setData({
         listEvent: listEvent

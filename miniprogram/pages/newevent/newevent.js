@@ -109,10 +109,15 @@ Page({
         var dimension = data.listEvent.dimension
         var header = data.listEvent.header
         var imgPath = data.listEvent.imgPath
+        var  tagsmirrorcolor1=data. tagsmirrorcolor[0]
+        var  tagsmirrorcolor2=data. tagsmirrorcolor[1]
+        var  tagsmirrorcolor3=data. tagsmirrorcolor[2]
+        console.log(tagsmirrorcolor3);
+        
         setTimeout(function () {
           //要延时执行的代码
           wx.reLaunch({
-            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header + '&imgPath=' + imgPath,
+            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header + '&imgPath=' + imgPath+' &tagsmirrorcolor1='+tagsmirrorcolor1+'&tagsmirrorcolor2='+tagsmirrorcolor2+'&tagsmirrorcolor3='+tagsmirrorcolor3,
           })
         }, 500)
       } else {

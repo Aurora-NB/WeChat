@@ -18,9 +18,8 @@
 				<image data-index="{{item.index}}" catchtap="circleTap" hidden="{{item.hasdone}}" src="../../image/yuan.png" mode="widthFix" class="cricle"></image>
 
 				<view class="text-dir">{{item.dimension}}</view>
-
-				<view class="tags" wx:for="{{item.tag}}">
-					<view class="tag-detail"><text>{{item}}</text></view>
+				<view class="tags"  wx:for="{{item.tag}}" wx:if="{{it!=''}}" wx:for-item="it" >
+					<view class="tag-detail" style="background-color:{{item.tagscolor[index]}}"  ><text>{{it}}</text></view>
 				</view>
 			</view>
 		</view>
