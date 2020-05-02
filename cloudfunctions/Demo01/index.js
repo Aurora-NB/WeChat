@@ -3,7 +3,7 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 // 云函数入口函数
-exports.main = async (event, context) => {
+exports.main = (event, context) => {
   // ...
 
   var sum =1+1

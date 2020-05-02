@@ -127,7 +127,7 @@ Page({
   // 当输入事件的事件的光标消失时的事件
   whenblur(e) {
     wx.cloud.callFunction({
-      name: 'demo01',
+      name: 'Demo01',
       data: {
         a: 1,
         b: 2
