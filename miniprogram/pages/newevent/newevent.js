@@ -109,7 +109,7 @@ Page({
       setTimeout(function () {
         //要延时执行的代码
         wx.reLaunch({
-          url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header + '&imgPath=' + imgPath,
+          url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header + '&imgPath=' + imgPath + '&type=newEvent',
         })
       }, 500)
     } else {

@@ -50,6 +50,11 @@ Page({
         hasUserInfo: true
       })
   },
+  about:function(){
+    wx.navigateTo({
+      url: '../about/about',
+    })
+  }
 
 
 })

@@ -77,7 +77,7 @@
 
 /* 圆形图片 */
 .cricle {
-  width: 21px;
+  width: 35px;
   padding-right: 1vw;
 }
 

@@ -12,7 +12,7 @@ Page({
       hasdone: false,
       time: "2000-08-11",
       tag: ['健身', '运动', '开会'],
-      detail: '',
+      detail: 'asd',
       imgpath: ''
     }, {
       dimension: "事件2",
@@ -49,28 +49,54 @@ Page({
     }]
   },
   onLoad: function (options) {
-    var listEvent = this.data.listEvent
-    var l = listEvent.length
-    if (options.dimension) {
-      listEvent.push({
-        dimension: options.dimension,
-        detail: this.options.detail,
-        tag: [
-          options.tags0 === 'undefined' ? '' : options.tags0,
-          options.tags1 === 'undefined' ? '' : options.tags1,
-          options.tags2 === 'undefined' ? '' : options.tags2
-        ],
-        index: l,
-        hasdone: false,
-        imgpath: options.imgpath
-      })
+    //新增事件
+    if (options.type === 'newEvent') {
+      console.log('new',options)
+      var listEvent = this.data.listEvent
+      var l = listEvent.length
+      if (options.dimension) {
+        listEvent.push({
+          dimension: options.dimension,
+          detail: this.options.detail,
+          tag: [
+            options.tags0 === 'undefined' ? '' : options.tags0,
+            options.tags1 === 'undefined' ? '' : options.tags1,
+            options.tags2 === 'undefined' ? '' : options.tags2
+          ],
+          index: l,
+          hasdone: false,
+          imgpath: options.imgpath
+        })
+        this.setData({
+          listEvent: listEvent
+        })
+      }
+    }
+    else if(options.type === 'saveEvent'){
+      console.log('save',options)
+      //保存事件
+      var list = this.data.listEvent
+      list[options.index].dimension = options.dimension
+      list[options.index].detail = options.detail
+      list[options.index].hasdone = (options.hasdone === 'true')?true:false
       this.setData({
-        listEvent: listEvent
+        listEvent : list
       })
     }
-    console.log(options);
+    else if(options.type === 'deleteEvent'){
+      //删除事件
+      console.log('delete',options)
+
+      var list = this.data.listEvent
+      list.splice(options.index,1)
+      
+      this.setData({
+        listEvent : list
+      })
+    }
 
   },
+  //圆圈被点击
   circleTap: function (e) {
     app.changeEvent(e, this)
     var list = this.data.listEvent
@@ -86,16 +112,18 @@ Page({
       })
     }
   },
-
+  //事件被点击
   eventTap: function (e) {
-    console.log(e)
     var index = e.currentTarget.dataset.index
     var dimension = this.data.listEvent[index].dimension
     var hasdone = this.data.listEvent[index].hasdone
     var time = this.data.listEvent[index].time
     var detail = this.data.listEvent[index].detail
+    var tag1 = this.data.listEvent[index].tag[0]
+    var tag2 = this.data.listEvent[index].tag[1]
+    var tag3 = this.data.listEvent[index].tag[2]
     wx.navigateTo({
-      url: '../eventDetail/eventDetail?dimension=' + dimension + '&hasdone=' + hasdone + '&time=' + time + '&detail=' + detail,
+      url: '../eventDetail/eventDetail?dimension=' + dimension + '&hasdone=' + hasdone + '&time=' + time + '&detail=' + detail + '&tag1=' + tag1 + '&tag2=' + tag2 + '&tag3=' + tag3 + '&index=' + index,
       complete: (res) => {},
     })
   }

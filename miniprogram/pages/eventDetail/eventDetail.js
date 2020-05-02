@@ -2,73 +2,93 @@
 Page({
   data: {
     dimension: '事件',
-      index: 0,
-      hasdone: false,
-      time: "2000-08-11",
-      tag: ['健身', '运动', '开会'],
-      detail: 'detail1',
+    index: 0,
+    hasdone: false,
+    time: "2000-08-11",
+    tag: ['健身', '运动', '开会'],
+    detail: 'detail1',
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    //获取事件数据
     console.log(options)
     this.setData({
       dimension: options.dimension,
       index: options.index,
-      hasdone: options.hasdone,
+      hasdone: (options.hasdone==='true')?true:false,
       time: options.time,
       detail: options.detail,
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  //标题改变
+  titleChange: function (e) {
+    this.setData({
+      dimension: e.detail.value
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  //详情改变
+  detailChange: function (e) {
+    this.setData({
+      detail: e.detail.detail
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  // 保存
+  saveTap: function () {
+    var n = 1;
+    if (this.data.dimension === '') {
+      n = 0;
+    }
+    if (n === 1) {
+      wx.showToast({
+        icon: 'none',
+        title: '保存成功',
+        duration: 2000
+      })
+      var index = this.data.index 
+      var dimension = this.data.dimension
+      var hasdone = this.data.hasdone
+      var detail = this.data.detail
+      setTimeout(function () {
+        //要延时执行的代码
+        wx.reLaunch({
+          url: '../theFirstPage/theFirstPage?index='+index+'&dimension='+dimension+'&hasdone='+hasdone+'&detail='+detail+'&type=saveEvent',
+        })
+      }, 500)
+    } else {
+      wx.showToast({
+        icon: 'none',
+        title: '标题不能为空',
+        duration: 2000
+      })
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  //hasdone改变
+  hasdoneChange:function(e){
+    this.setData({
+      hasdone : !this.data.hasdone
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  //删除标签
+  deleteTap:function(){
+    var that = this
+    wx.showModal({
+      title: '你确定要删除么',
+      content: '删除后将无法恢复',
+      success (res) {
+        if (res.confirm) {
+          var index = that.data.index 
+            //要延时执行的代码
+            wx.reLaunch({
+              url: '../theFirstPage/theFirstPage?index='+index+'&type=deleteEvent',
+            })
+        }
+      }
+    })
   }
+ 
 })
