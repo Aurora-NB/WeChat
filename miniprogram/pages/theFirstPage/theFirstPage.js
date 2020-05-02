@@ -81,6 +81,7 @@ Page({
       list[options.index].hasdone = (options.hasdone === 'true')?true:false
       this.setData({
         listEvent : list
+
       })
     }
     else if(options.type === 'deleteEvent'){
