@@ -197,25 +197,25 @@ Page({
     })
   },
   // 当标签提交的样式
-  biaoqianconfim(e) {
-   console.log(e)
-    var tags = this.data.tags
-    var tagscolor = this.data.tagscolor
-    var tagsmirrorcolor = this.data.tagsmirrorcolor
-    tagscolor.sort(function () {
-      return Math.random() - 0.5;
-    });
-    if (tags.length < 3) {
-      tagsmirrorcolor.push(tagscolor[tags.length])
-      tags.push(e.detail.value)
-      this.setData({
-        tags: tags,
-        baioqianvalue: '',
-        tagscolor: tagscolor,
-        tagsmirrorcolor: tagsmirrorcolor
-      })
-    }
-  },
+  // biaoqianconfim(e) {
+  //  console.log(e)
+  //   var tags = this.data.tags
+  //   var tagscolor = this.data.tagscolor
+  //   var tagsmirrorcolor = this.data.tagsmirrorcolor
+  //   tagscolor.sort(function () {
+  //     return Math.random() - 0.5;
+  //   });
+  //   if (tags.length < 3) {
+  //     tagsmirrorcolor.push(tagscolor[tags.length])
+  //     tags.push(e.detail.value)
+  //     this.setData({
+  //       tags: tags,
+  //       baioqianvalue: '',
+  //       tagscolor: tagscolor,
+  //       tagsmirrorcolor: tagsmirrorcolor
+  //     })
+  //   }
+  // },
   // 删除标签的函数
   deletetap(e) {
     console.log(e)
