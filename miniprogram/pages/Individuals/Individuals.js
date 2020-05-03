@@ -1,7 +1,7 @@
 const app = getApp()
 Page({
   data: {
-    userInfo: {},
+    userInfo: {avatarUrl:'../../image/userhead2.png'},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     text1: '登录',
