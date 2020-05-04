@@ -86,7 +86,6 @@ Page({
       var list = this.data.listEvent
       list[options.index].dimension = options.dimension
       list[options.index].detail = options.detail
-      list[options.index].hasdone = (options.hasdone === 'true')?true:false
       this.setData({
         listEvent : list
       })
