@@ -19,7 +19,7 @@ Page({
       dimension: "事件2",
       index: 1,
       hasdone: false,
-      time: "2000-08-11",
+      time: "2000-08-12",
       tag: ['健身', '运动', '开会'],
       detail: '',
       imgpath: '',
@@ -28,7 +28,7 @@ Page({
       dimension: "事件3",
       index: 2,
       hasdone: false,
-      time: "2000-08-11",
+      time: "2000-08-13",
       tag: ['健身', '运动', '开会'],
       detail: '',
       imgpath: '',
@@ -37,7 +37,7 @@ Page({
       dimension: "事件4",
       index: 3,
       hasdone: false,
-      time: "2000-08-11",
+      time: "2000-08-14",
       tag: ['健身', '运动', '开会'],
       detail: '',
       imgpath: '',
@@ -46,7 +46,7 @@ Page({
       dimension: "事件5",
       index: 4,
       hasdone: false,
-      time: "2000-08-11",
+      time: "2000-08-15",
       tag: ['健身', '运动', '开会'],
       detail: '',
       imgpath: '',
@@ -102,7 +102,7 @@ Page({
         listEvent : list
       })
     }
-
+    
   },
   //圆圈被点击
   circleTap: function (e) {

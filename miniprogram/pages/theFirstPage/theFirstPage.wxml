@@ -12,14 +12,15 @@
 	<view class="event-continer">
 		<!-- 事件的地方 -->
 
-		<view class="events" wx:for="{{listEvent}}" wx:key="*this">
+		<view class="events" wx:for="{{listEvent}}" >
 			<view class="events" catchtap="eventTap" data-index="{{item.index}}">
-				<icon class="icon-ok" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" type="{{'success'}}" ></icon>
-				<image data-index="{{item.index}}" catchtap="circleTap" wx:if="{{!item.hasdone}}" src="../../image/yuan.png" mode="widthFix" class="cricle"></image>
+				<!-- <icon size="20" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" type="{{'success'}}" ></icon> -->
+				<image  class="icon-ok" src="../../image/success.png"  data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" ></image>
+				<image  class="cricle" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{!item.hasdone}}" src="../../image/yuan.png" ></image>
 
 				<view class="text-dir">{{item.dimension}}</view>
-				<view class="tags"  wx:for="{{item.tag}}" wx:if="{{it!=''}}" wx:for-item="it" >
-					<view class="tag-detail" style="background-color:{{item.tagscolor[index]}}"  ><text>{{it}}</text></view>
+				<view class="tags"  wx:for="{{item.tag}}" wx:for-item="it" >
+					<view class="tag-detail" style="background-color:{{item.tagscolor[index]}}"  ><text wx:if="{{it!=''}}" >{{it}}</text></view>
 				</view>
 			</view>
 		</view>
