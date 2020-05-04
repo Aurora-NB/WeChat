@@ -14,7 +14,7 @@
 
 		<view class="events" wx:for="{{listEvent}}" wx:key="*this">
 			<view class="events" catchtap="eventTap" data-index="{{item.index}}">
-				<icon data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" type="{{'success'}}"></icon>
+				<icon class="icon-ok" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" type="{{'success'}}" ></icon>
 				<image data-index="{{item.index}}" catchtap="circleTap" wx:if="{{!item.hasdone}}" src="../../image/yuan.png" mode="widthFix" class="cricle"></image>
 
 				<view class="text-dir">{{item.dimension}}</view>

@@ -22,9 +22,8 @@
 }
 
 .iconfont {
-  width: 10vw;
   font-family: "iconfont" !important;
-  font-size: 10vw;
+  font-size: 7vw;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -129,4 +128,7 @@
   align-items: center;
   border-radius: 1em;
   font-size: x-small;
+}
+.icon-ok{
+  size: 7vw;
 }
