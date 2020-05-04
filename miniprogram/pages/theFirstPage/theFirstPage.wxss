@@ -70,8 +70,8 @@
 
 /* 圆形图片 */
 .cricle {
-  width: 9vw;
-  height: 6vw;
+  width: 7vw;
+  height: auto;
 }
 
 .text-dir {
@@ -124,6 +124,6 @@
 }
 /* 对号的样式 */
 .icon-ok{
-  width: 9vw;
-  height: 6vw;
+  width: 7vw;
+  height: auto;
 }
