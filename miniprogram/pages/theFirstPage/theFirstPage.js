@@ -14,7 +14,7 @@ Page({
       tag: ['健身', '运动', '开会'],
       detail: 'asd',
       imgpath: '',
-      tagscolor:[]
+      tagscolor:['rgb(39,106,132)', 'rgb(55,131,161)', 'rgb(119,119,119)',]
     }, {
       dimension: "事件2",
       index: 1,

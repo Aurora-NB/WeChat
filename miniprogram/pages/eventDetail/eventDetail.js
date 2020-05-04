@@ -11,7 +11,6 @@ Page({
 
   onLoad: function (options) {
     //获取事件数据
-    console.log(options)
     this.setData({
       dimension: options.dimension,
       index: options.index,
