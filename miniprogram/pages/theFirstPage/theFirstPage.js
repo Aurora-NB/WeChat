@@ -14,7 +14,7 @@ Page({
       tag: ['健身', '运动', '开会'],
       detail: 'asd',
       imgpath: '',
-      tagscolor:[]
+      tagscolor:['rab(0,49,79)','rgb(250,227,123)','rgb(205,179,128)']
     }, {
       dimension: "事件2",
       index: 1,
@@ -23,7 +23,7 @@ Page({
       tag: ['健身', '运动', '开会'],
       detail: '',
       imgpath: '',
-      tagscolor:['red','green','yellow']
+      tagscolor:['rab(0,49,79)','rgb(250,227,123)','rgb(205,179,128)']
     }, {
       dimension: "事件3",
       index: 2,
@@ -32,7 +32,7 @@ Page({
       tag: ['健身', '运动', '开会'],
       detail: '',
       imgpath: '',
-      tagscolor:['red','green','yellow']
+      tagscolor:['rab(0,49,79)','rgb(250,227,123)','rgb(205,179,128)']
     }, {
       dimension: "事件4",
       index: 3,
@@ -41,7 +41,7 @@ Page({
       tag: ['健身', '运动', '开会'],
       detail: '',
       imgpath: '',
-      tagscolor:['red','green','yellow']
+      tagscolor:['rab(0,49,79)','rgb(250,227,123)','rgb(205,179,128)']
     }, {
       dimension: "事件5",
       index: 4,
@@ -50,7 +50,7 @@ Page({
       tag: ['健身', '运动', '开会'],
       detail: '',
       imgpath: '',
-      tagscolor:['red','green','yellow']
+      tagscolor:['rab(0,49,79)','rgb(250,227,123)','rgb(205,179,128)']
     }]
   },
   onLoad: function (options) {
