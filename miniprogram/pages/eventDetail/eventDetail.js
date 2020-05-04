@@ -11,11 +11,10 @@ Page({
 
   onLoad: function (options) {
     //获取事件数据
-    console.log(options)
     this.setData({
       dimension: options.dimension,
       index: options.index,
-      hasdone: (options.hasdone==='true')?true:false,
+      hasdone: (options.hasdone === 'true') ? true : false,
       time: options.time,
       detail: options.detail,
     })
@@ -47,14 +46,14 @@ Page({
         title: '保存成功',
         duration: 2000
       })
-      var index = this.data.index 
+      var index = this.data.index
       var dimension = this.data.dimension
       var hasdone = this.data.hasdone
       var detail = this.data.detail
       setTimeout(function () {
         //要延时执行的代码
         wx.reLaunch({
-          url: '../theFirstPage/theFirstPage?index='+index+'&dimension='+dimension+'&hasdone='+hasdone+'&detail='+detail+'&type=saveEvent',
+          url: '../theFirstPage/theFirstPage?index=' + index + '&dimension=' + dimension + '&hasdone=' + hasdone + '&detail=' + detail + '&type=saveEvent',
         })
       }, 500)
     } else {
@@ -66,29 +65,22 @@ Page({
     }
   },
 
-  //hasdone改变
-  hasdoneChange:function(e){
-    this.setData({
-      hasdone : !this.data.hasdone
-    })
-  },
-
   //删除标签
-  deleteTap:function(){
+  deleteTap: function () {
     var that = this
     wx.showModal({
       title: '你确定要删除么',
       content: '删除后将无法恢复',
-      success (res) {
+      success(res) {
         if (res.confirm) {
-          var index = that.data.index 
-            //要延时执行的代码
-            wx.reLaunch({
-              url: '../theFirstPage/theFirstPage?index='+index+'&type=deleteEvent',
-            })
+          var index = that.data.index
+          //要延时执行的代码
+          wx.reLaunch({
+            url: '../theFirstPage/theFirstPage?index=' + index + '&type=deleteEvent',
+          })
         }
       }
     })
   }
- 
+
 })
