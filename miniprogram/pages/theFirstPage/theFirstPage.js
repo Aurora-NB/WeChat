@@ -7,57 +7,62 @@ Page({
    */
   data: {
     listEvent: [{
-      dimension: '事件1',
-      index: 0,
-      hasdone: false,
-      time: "2000-08-11",
-      tag: ['健身', '运动', '开会'],
-      detail: 'asd',
-      imgpath: '',
-      tagscolor:['rgb(39,106,132)', 'rgb(55,131,161)', 'rgb(119,119,119)',]
-    }, {
-      dimension: "事件2",
-      index: 1,
-      hasdone: false,
-      time: "2000-08-11",
-      tag: ['健身', '运动', '开会'],
-      detail: '',
-      imgpath: '',
-      tagscolor:['red','green','yellow']
-    }, {
-      dimension: "事件3",
-      index: 2,
-      hasdone: false,
-      time: "2000-08-11",
-      tag: ['健身', '运动', '开会'],
-      detail: '',
-      imgpath: '',
-      tagscolor:['red','green','yellow']
-    }, {
-      dimension: "事件4",
-      index: 3,
-      hasdone: false,
-      time: "2000-08-11",
-      tag: ['健身', '运动', '开会'],
-      detail: '',
-      imgpath: '',
-      tagscolor:['red','green','yellow']
-    }, {
-      dimension: "事件5",
-      index: 4,
-      hasdone: false,
-      time: "2000-08-11",
-      tag: ['健身', '运动', '开会'],
-      detail: '',
-      imgpath: '',
-      tagscolor:['red','green','yellow']
-    }]
+        dimension: '事件1',
+        index: 0,
+        hasdone: false,
+        time: "2000-08-11",
+        tag: ['健身', '运动', '开会'],
+        detail: 'asd',
+        imgpath: '',
+        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
+      },
+      {
+        dimension: "事件2",
+        index: 1,
+        hasdone: false,
+        time: "2000-08-11",
+        tag: ['健身', '运动', '开会'],
+        detail: '',
+        imgpath: '',
+        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
+      },
+      {
+        dimension: "事件3",
+        index: 2,
+        hasdone: false,
+        time: "2000-08-11",
+        tag: ['健身', '运动', '开会'],
+        detail: '',
+        imgpath: '',
+        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
+      },
+      {
+        dimension: "事件4",
+        index: 3,
+        hasdone: false,
+        time: "2000-08-11",
+        tag: ['健身', '运动', '开会'],
+        detail: '',
+        imgpath: '',
+        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
+      },
+      {
+        dimension: "事件5",
+        index: 4,
+        hasdone: false,
+        time: "2000-08-11",
+        tag: ['健身', '运动', '开会'],
+        detail: '',
+        imgpath: '',
+        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
+      }
+    ]
   },
   onLoad: function (options) {
 
     //新增事件
     if (options.type === 'newEvent') {
-      console.log('new',options)
+      console.log('new', options)
       var listEvent = this.data.listEvent
       var l = listEvent.length
       if (options.dimension) {
@@ -71,34 +76,31 @@ Page({
           ],
           index: l,
           hasdone: false,
-          imgpath: options.imgpath,tagscolor:[options.tagsmirrorcolor1=== 'undefined' ? '' : options.tagsmirrorcolor1
-          ,               options.tagsmirrorcolor2=== 'undefined' ? '' : options.tagsmirrorcolor2
-          ,               options.tagsmirrorcolor3=== 'undefined' ? '' :options.tagsmirrorcolor3 ]
+          imgpath: options.imgpath,
+          tagscolor: [options.tagsmirrorcolor1 === 'undefined' ? '' : options.tagsmirrorcolor1, options.tagsmirrorcolor2 === 'undefined' ? '' : options.tagsmirrorcolor2, options.tagsmirrorcolor3 === 'undefined' ? '' : options.tagsmirrorcolor3]
         })
         this.setData({
           listEvent: listEvent
         })
       }
-    }
-    else if(options.type === 'saveEvent'){
-      console.log('save',options)
+    } else if (options.type === 'saveEvent') {
+      console.log('save', options)
       //保存事件
       var list = this.data.listEvent
       list[options.index].dimension = options.dimension
       list[options.index].detail = options.detail
       this.setData({
-        listEvent : list
+        listEvent: list
       })
-    }
-    else if(options.type === 'deleteEvent'){
+    } else if (options.type === 'deleteEvent') {
       //删除事件
-      console.log('delete',options)
+      console.log('delete', options)
 
       var list = this.data.listEvent
-      list.splice(options.index,1)
-      
+      list.splice(options.index, 1)
+
       this.setData({
-        listEvent : list
+        listEvent: list
       })
     }
 

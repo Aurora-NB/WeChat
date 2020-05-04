@@ -19,7 +19,7 @@ Page({
     tagsindex: 0,
     baioqianvalue: '',
     tapexist: [false, false, false],
-    tagscolor: ['rgb(39,106,132)', 'rgb(55,131,161)', 'rgb(119,119,119)', 'rgb(34,167,242)', 'rgb(0,178,106)'],
+    tagscolor: ['rgb(39,106,132)','rab(0,49,79)','rgb(250,227,123)','rgb(113,150,159)','rgb(255,150,128)','rgb(254,67,101)','rgb(229,187,129)','rgb(205,179,128)'],
     tagsmirrorcolor: [],
     colorindex: 0
 
@@ -183,8 +183,17 @@ Page({
     tagscolor.sort(function () {
       return Math.random() - 0.5;
     });
+    var n=0;
+    for(var  i=0;i<tagsmirrorcolor.length&&n<tagscolor.length;i++)
+    {
+      if(tagscolor[n]===tagsmirrorcolor[i])
+      {
+        n++
+        i=0
+      }
+    }
     if (tags.length < 3) {
-      tagsmirrorcolor.push(tagscolor[tags.length])
+      tagsmirrorcolor.push(tagscolor[n])
       tags.push(e.detail.value)
       this.setData({
         tags: tags,

@@ -2,7 +2,7 @@
 
 	<view class="user">
 
-		<image src="../../image/userhead.png" class="userhead" src="{{userInfo.avatarUrl}}"></image>
+		<image class="userhead" src="{{userInfo.avatarUrl}}"></image>
 		<view class="detail">
 			<text style="font-size:50rpx;"  wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</text>
 			<text style="font-size:50rpx;"  wx:if="{{!(!hasUserInfo && canIUse)}}">{{userInfo.nickName}}</text>
