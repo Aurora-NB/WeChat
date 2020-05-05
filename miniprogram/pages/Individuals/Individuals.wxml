@@ -4,7 +4,8 @@
 
 		<image class="userhead" src="{{userInfo.avatarUrl}}"></image>
 		<view class="detail">
-			<text style="font-size:50rpx;"  wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</text>
+		<!-- <text style="font-size:50rpx;"  wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo"  bindgetuserinfo="getUserInfo">登录</text> -->
+			<button  class="button-log" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo"  style=" width:200rpx; background:#ffffff;" bindgetuserinfo="getUserInfo">登录</button>
 			<text style="font-size:50rpx;"  wx:if="{{!(!hasUserInfo && canIUse)}}">{{userInfo.nickName}}</text>
 			<text style="font-size:30rpx;color:#918597;">仅支持微信登录</text>
 		</view>

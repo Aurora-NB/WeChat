@@ -59,7 +59,6 @@ Page({
     ]
   },
   onLoad: function (options) {
-
     //新增事件
     if (options.type === 'newEvent') {
       console.log('new', options)
@@ -135,5 +134,6 @@ Page({
       url: '../eventDetail/eventDetail?dimension=' + dimension + '&hasdone=' + hasdone + '&time=' + time + '&detail=' + detail + '&tag1=' + tag1 + '&tag2=' + tag2 + '&tag3=' + tag3 + '&index=' + index,
       complete: (res) => {},
     })
-  }
+  },
+  
 })
