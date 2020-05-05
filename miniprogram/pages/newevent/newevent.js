@@ -1,6 +1,6 @@
-// pages/newevent/newevent.js
+const db = wx.cloud.database()
+const phtotos=db.collection('phtotos');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -117,14 +117,38 @@ Page({
       count: 1,
       sizeType: ['original'],
       sourceType: ['album'],
-      success: function (res) {
+      success: res=> {
         //res.tempFilePaths 返回图片本地文件路径列表
         var tempFilePaths = res.tempFilePaths;
-        that.setData({
-          imgPath: tempFilePaths[0]
+        var  day1=new Date();
+        var endimgpath= tempFilePaths[0].match(/\.*?(\.\w+)$/)
+        console.log(endimgpath[1]);
+        wx.cloud.uploadFile({
+          cloudPath:Math.floor( Math.random()*100000)+day1.toLocaleTimeString()+endimgpath[1],
+          filePath:tempFilePaths[0],
+          success:res=>{
+            console.log(res)
+            phtotos.add(
+              {
+                data:{
+                  fileID:res.fileID
+                }
+              }
+            )
+              wx.showToast({
+                icon: 'none',
+                title: '上传成功',
+                duration: 2000
+              });
+              that.setData({
+                imgPath: tempFilePaths[0],
+                fileId:res.fileID
+              })
+          }
         })
-
-      }
+      },
+      fail:console.error
+      
     });
   },
   //输入得到标签的样式

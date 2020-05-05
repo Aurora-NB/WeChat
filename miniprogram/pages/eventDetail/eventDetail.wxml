@@ -4,13 +4,13 @@
 	<view style="display: flex; width: 95%;">
 		<view class="title butn">
 			<input class="titleInput" value="{{dimension}}" maxlength="8" bindinput="titleChange"></input>
-			<icon type="success" wx:if="{{hasdone}}"   style="float:right;"></icon>
-			<icon type="cancel" wx:if="{{!hasdone}}"  style="float:right;"></icon>
+			<icon type="success" wx:if="{{hasdone}}"   bindtap="ifhasdone" style="float:right;"></icon>
+			<icon type="cancel" wx:if="{{!hasdone}}"  bindtap="ifhasdone" style="float:right;"></icon>
 		</view>
 		<view class="time butn">{{time}}</view>
 	</view>
 
-	<!-- 分割线 -->
+	<!-- 这里是分割线 -->
 	<view class="line"></view>
 
 	<view class="bottom-view">

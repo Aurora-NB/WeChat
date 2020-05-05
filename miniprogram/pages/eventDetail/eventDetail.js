@@ -81,6 +81,17 @@ Page({
         }
       }
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title:'微光',
+      imageUrl: '../../image/mainIcon.png'
+    }
   }
-
+  ,ifhasdone(e){
+    var hasdone=!this.data.hasdone
+    this.setData({
+      hasdone:hasdone
+    })
+  }
 })
