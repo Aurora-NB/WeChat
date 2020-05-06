@@ -3,7 +3,7 @@
 
 	<!--标题的输入  -->
 	<view class="header-view">
-		<input bindblur="headerblur" class="header-input" placeholder="标题" maxlength="15" value="{{listEvent.header}}"></input>
+		<input bindblur="headerblur" class="header-input" placeholder="标题" maxlength="15" value="{{listEvent.dimension}}"></input>
 
 	</view>
 	<!-- 标签 -->
@@ -25,7 +25,7 @@
 	</view>
 	<!-- 事件主体 -->
 	<view class="text-view" bindtap="">
-		<textarea name="textinput" class="text-input" placeholder="请在这里输入你的事件" bindblur="whenblur" maxlength="114" value="{{listEvent.dimension}}"></textarea>
+		<textarea name="textinput" class="text-input" placeholder="请在这里输入你的事件" bindblur="whenblur" maxlength="114" value="{{listEvent.detail}}"></textarea>
 	</view>
 	<!-- 图片上传 -->
 	<view>

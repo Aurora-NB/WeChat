@@ -75,6 +75,7 @@ Page({
           ],
           index: l,
           hasdone: false,
+          time : options.time,
           imgpath: options.imgpath,
           tagscolor: [options.tagsmirrorcolor1 === 'undefined' ? '' : options.tagsmirrorcolor1, options.tagsmirrorcolor2 === 'undefined' ? '' : options.tagsmirrorcolor2, options.tagsmirrorcolor3 === 'undefined' ? '' : options.tagsmirrorcolor3]
         })
