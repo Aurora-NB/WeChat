@@ -1,5 +1,6 @@
 const db = wx.cloud.database()
-const phtotos=db.collection('phtotos');
+const phtotos=db.collection('phtotos')
+const usres=db.collection('users')
 Page({
   /**
    * 页面的初始数据
@@ -55,6 +56,16 @@ Page({
           title: '提交成功',
           duration: 2000
         });
+        var tags=data.tags;
+        var tagsmirrorcolor=data.tagsmirrorcolor
+        while(tags.length<3)
+        {
+          tags.push('')
+        }
+        while(tagsmirrorcolor.length<3)
+        {
+          tagsmirrorcolor.push('')
+        }
         var tags0 = data.tags[0]
         var tags1 = data.tags[1]
         var tags2 = data.tags[2]
@@ -65,15 +76,35 @@ Page({
         var  tagsmirrorcolor1=data. tagsmirrorcolor[0]
         var  tagsmirrorcolor2=data. tagsmirrorcolor[1]
         var  tagsmirrorcolor3=data. tagsmirrorcolor[2]
+        var fileID=data.fileID
+        var time=new Date().getTime()
+        var date=new Date().toLocaleDateString()
         console.log(tagsmirrorcolor3);
-        
         setTimeout(function () {
+          usres.add({
+            data:{
+              tag:tags,
+              tagscolor:tagsmirrorcolor,
+              imgPath:data.listEvent.imgPath,
+              fileID:data.fileID,
+              detail:data.listEvent.dimension,
+              dimension:data.listEvent.header,
+              // index:data.listEvent.index,
+              date:time,
+              time:date,
+              hasdone:false
+            },
+            success:res=>{
+              console.log(res);
+              
+            }
+            
+          })
           //要延时执行的代码
           wx.reLaunch({
-
-            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header +' &tagsmirrorcolor1='+tagsmirrorcolor1+'&tagsmirrorcolor2='+tagsmirrorcolor2+'&tagsmirrorcolor3='+tagsmirrorcolor3+ '&imgPath=' + imgPath + '&type=newEvent',
+            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header +' &tagsmirrorcolor1='+tagsmirrorcolor1+'&tagsmirrorcolor2='+tagsmirrorcolor2+'&tagsmirrorcolor3='+tagsmirrorcolor3+ '&imgPath=' + imgPath +'&fileID='+fileID+ '&type=newEvent',
           })
-        }, 500)
+        }, 1000)
       } else {
         wx.showToast({
           icon: 'none',
@@ -123,8 +154,15 @@ Page({
         var  day1=new Date();
         var endimgpath= tempFilePaths[0].match(/\.*?(\.\w+)$/)
         console.log(endimgpath[1]);
+        wx.showLoading({
+          title: '上传中',
+          mask:true
+        })
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 2500)
         wx.cloud.uploadFile({
-          cloudPath:Math.floor( Math.random()*100000)+day1.toLocaleTimeString()+endimgpath[1],
+          cloudPath:Math.floor( Math.random()*100000)+day1.getTime()+endimgpath[1],
           filePath:tempFilePaths[0],
           success:res=>{
             console.log(res)
@@ -135,19 +173,26 @@ Page({
                 }
               }
             )
+            wx.cloud.getTempFileURL({
+              fileList: [{
+                fileID: res.fileID,
+              }]
+            }).then(res => {
               wx.showToast({
                 icon: 'none',
                 title: '上传成功',
                 duration: 2000
               });
               that.setData({
-                imgPath: tempFilePaths[0],
-                fileId:res.fileID
+                imgPath: res.fileList[0].tempFileURL,
+                fileID:res.fileList[0].fileID
               })
+              // get temp file URL
+              console.log(res.fileList)
+            })
           }
         })
-      },
-      fail:console.error
+      }
       
     });
   },

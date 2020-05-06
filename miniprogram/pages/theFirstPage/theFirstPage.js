@@ -1,4 +1,6 @@
-// pages/thefirstpage/demo01.js
+const db = wx.cloud.database()
+const phtotos=db.collection('phtotos')
+const usres=db.collection('users')
 var app = getApp()
 Page({
 
@@ -59,49 +61,68 @@ Page({
     ]
   },
   onLoad: function (options) {
-    //新增事件
-    if (options.type === 'newEvent') {
-      console.log('new', options)
-      var listEvent = this.data.listEvent
-      var l = listEvent.length
-      if (options.dimension) {
-        listEvent.push({
-          dimension: options.dimension,
-          detail: this.options.detail,
-          tag: [
-            options.tags0 === 'undefined' ? '' : options.tags0,
-            options.tags1 === 'undefined' ? '' : options.tags1,
-            options.tags2 === 'undefined' ? '' : options.tags2
-          ],
-          index: l,
-          hasdone: false,
-          imgpath: options.imgpath,
-          tagscolor: [options.tagsmirrorcolor1 === 'undefined' ? '' : options.tagsmirrorcolor1, options.tagsmirrorcolor2 === 'undefined' ? '' : options.tagsmirrorcolor2, options.tagsmirrorcolor3 === 'undefined' ? '' : options.tagsmirrorcolor3]
-        })
+    var time=new Date().toLocaleDateString()
+    usres.where({
+      time:time
+    }).get({
+      success:res=>{
+        for(var i=0;i<res.data.length;i++)
+        {
+        var listEvent=this.data.listEvent
+        res.data[i].index=listEvent.length
+        listEvent.push(res.data[i])
+        }
+        console.log(res);
         this.setData({
-          listEvent: listEvent
+          listEvent:listEvent
         })
       }
-    } else if (options.type === 'saveEvent') {
-      console.log('save', options)
-      //保存事件
-      var list = this.data.listEvent
-      list[options.index].dimension = options.dimension
-      list[options.index].detail = options.detail
-      this.setData({
-        listEvent: list
-      })
-    } else if (options.type === 'deleteEvent') {
-      //删除事件
-      console.log('delete', options)
+    })
+    // //新增事件
+    // if (options.type === 'newEvent') {
+    //   console.log('new', options)
+    //   var listEvent = this.data.listEvent
+    //   var l = listEvent.length
+    //   if (options.dimension) {
+    //     listEvent.push({
+    //       dimension: options.dimension,
+    //       detail: this.options.detail,
+    //       tag: [
+    //         options.tags0 === 'undefined' ? '' : options.tags0,
+    //         options.tags1 === 'undefined' ? '' : options.tags1,
+    //         options.tags2 === 'undefined' ? '' : options.tags2
+    //       ],
+    //       index: l,
+    //       hasdone: false,
+    //       imgpath: options.imgpath,
+    //       tagscolor: [options.tagsmirrorcolor1 === 'undefined' ? '' : options.tagsmirrorcolor1, options.tagsmirrorcolor2 === 'undefined' ? '' : options.tagsmirrorcolor2, options.tagsmirrorcolor3 === 'undefined' ? '' : options.tagsmirrorcolor3]
+    //     })
+    //     this.setData({
+    //       listEvent: listEvent
+    //     })
+    //   }
+    // } else
+    //  if (options.type === 'saveEvent') {
+    //   console.log('save', options)
+    //   //保存事件
+    //   var list = this.data.listEvent
+    //   list[options.index].dimension = options.dimension
+    //   list[options.index].detail = options.detail
+    //   this.setData({
+    //     listEvent: list
+    //   })
+    // } 
+    // else if (options.type === 'deleteEvent') {
+    //   //删除事件
+    //   console.log('delete', options)
 
-      var list = this.data.listEvent
-      list.splice(options.index, 1)
+    //   var list = this.data.listEvent
+    //   list.splice(options.index, 1)
 
-      this.setData({
-        listEvent: list
-      })
-    }
+    //   this.setData({
+    //     listEvent: list
+    //   })
+    // }
 
   },
   //圆圈被点击
