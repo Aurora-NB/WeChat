@@ -1,6 +1,7 @@
 const db = wx.cloud.database()
 const phtotos=db.collection('phtotos')
 const usres=db.collection('users')
+var util = require('../../utils/util.js');
 Page({
   /**
    * 页面的初始数据
@@ -13,7 +14,6 @@ Page({
       time: "",
       tag: ['', '', ''],
       detail: '',
-      header: ''
     },
     tags: [],
     imgPath: "../../image/download1.png",
@@ -30,7 +30,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.index);
     var listEvent = this.data.listEvent;
     listEvent.index = options.index - 0 + 1;
     this.setData({
@@ -44,10 +43,10 @@ Page({
     var data=this.data
     console.log(e);
     var n = 1;
-
+    
     setTimeout(function () {
       //要延时执行的代码
-      if (data.listEvent.dimension === '' || data.listEvent.header === '') {
+      if (data.listEvent.dimension === '' || data.listEvent.detail === '') {
         n = 0;
       }
       if (n === 1) {
@@ -66,19 +65,19 @@ Page({
         {
           tagsmirrorcolor.push('')
         }
+        var time = util.formatTime(new Date());
         var tags0 = data.tags[0]
         var tags1 = data.tags[1]
         var tags2 = data.tags[2]
         var index = data.listEvent.index - 0
         var dimension = data.listEvent.dimension
-        var header = data.listEvent.header
+        var detail = data.listEvent.detail
         var imgPath = data.listEvent.imgPath
         var  tagsmirrorcolor1=data. tagsmirrorcolor[0]
         var  tagsmirrorcolor2=data. tagsmirrorcolor[1]
         var  tagsmirrorcolor3=data. tagsmirrorcolor[2]
         var fileID=data.fileID
-        var time=new Date().getTime()
-        var date=new Date().toLocaleDateString()
+        var date=new Date().getTime()
         console.log(tagsmirrorcolor3);
         setTimeout(function () {
           usres.add({
@@ -90,8 +89,8 @@ Page({
               detail:data.listEvent.dimension,
               dimension:data.listEvent.header,
               // index:data.listEvent.index,
-              date:time,
-              time:date,
+              date:date,
+              time:time,
               hasdone:false
             },
             success:res=>{
@@ -102,7 +101,7 @@ Page({
           })
           //要延时执行的代码
           wx.reLaunch({
-            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header +' &tagsmirrorcolor1='+tagsmirrorcolor1+'&tagsmirrorcolor2='+tagsmirrorcolor2+'&tagsmirrorcolor3='+tagsmirrorcolor3+ '&imgPath=' + imgPath +'&fileID='+fileID+ '&type=newEvent',
+            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header +' &tagsmirrorcolor1='+tagsmirrorcolor1+'&tagsmirrorcolor2='+tagsmirrorcolor2+'&tagsmirrorcolor3='+tagsmirrorcolor3+ '&imgPath=' + imgPath +'&fileID='+fileID+ '&type=newEvent'+'&time='+time,
           })
         }, 1000)
       } else {
@@ -118,7 +117,7 @@ Page({
   // 当输入事件的事件的光标消失时的事件
   whenblur(e) {
     var listEvent = this.data.listEvent
-    listEvent.dimension = e.detail.value
+    listEvent.detail = e.detail.value
     this.setData({
       listEvent: listEvent
     });
@@ -207,7 +206,7 @@ Page({
   },
   headerblur(e) {
     var listEvent = this.data.listEvent;
-    listEvent.header = e.detail.value;
+    listEvent.dimension = e.detail.value;
     this.setData({
       listEvent: listEvent
     })
