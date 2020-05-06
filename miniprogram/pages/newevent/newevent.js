@@ -86,8 +86,8 @@ Page({
               tagscolor:tagsmirrorcolor,
               imgPath:data.listEvent.imgPath,
               fileID:data.fileID,
-              detail:data.listEvent.dimension,
-              dimension:data.listEvent.header,
+              detail:detail,
+              dimension:dimension,
               // index:data.listEvent.index,
               date:date,
               time:time,
@@ -101,7 +101,7 @@ Page({
           })
           //要延时执行的代码
           wx.reLaunch({
-            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + dimension + '&header=' + header +' &tagsmirrorcolor1='+tagsmirrorcolor1+'&tagsmirrorcolor2='+tagsmirrorcolor2+'&tagsmirrorcolor3='+tagsmirrorcolor3+ '&imgPath=' + imgPath +'&fileID='+fileID+ '&type=newEvent'+'&time='+time,
+            url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + detail + '&header=' + dimension +' &tagsmirrorcolor1='+tagsmirrorcolor1+'&tagsmirrorcolor2='+tagsmirrorcolor2+'&tagsmirrorcolor3='+tagsmirrorcolor3+ '&imgPath=' + imgPath +'&fileID='+fileID+ '&type=newEvent'+'&time='+time,
           })
         }, 1000)
       } else {

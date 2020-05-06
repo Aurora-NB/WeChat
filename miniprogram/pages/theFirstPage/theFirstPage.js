@@ -2,66 +2,22 @@ const db = wx.cloud.database()
 const phtotos=db.collection('phtotos')
 const usres=db.collection('users')
 var app = getApp()
+var util = require('../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    listEvent: [{
-        dimension: '事件1',
-        index: 0,
-        hasdone: false,
-        time: "2000-08-11",
-        tag: ['健身', '运动', '开会'],
-        detail: 'asd',
-        imgpath: '',
-        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
-      },
-      {
-        dimension: "事件2",
-        index: 1,
-        hasdone: false,
-        time: "2000-08-11",
-        tag: ['健身', '运动', '开会'],
-        detail: '',
-        imgpath: '',
-        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
-      },
-      {
-        dimension: "事件3",
-        index: 2,
-        hasdone: false,
-        time: "2000-08-11",
-        tag: ['健身', '运动', '开会'],
-        detail: '',
-        imgpath: '',
-        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
-      },
-      {
-        dimension: "事件4",
-        index: 3,
-        hasdone: false,
-        time: "2000-08-11",
-        tag: ['健身', '运动', '开会'],
-        detail: '',
-        imgpath: '',
-        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
-      },
-      {
-        dimension: "事件5",
-        index: 4,
-        hasdone: false,
-        time: "2000-08-11",
-        tag: ['健身', '运动', '开会'],
-        detail: '',
-        imgpath: '',
-        tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(205,179,128)']
-      }
+    listEvent: [
     ]
   },
   onLoad: function (options) {
-    var time=new Date().toLocaleDateString()
+    wx.showLoading({
+      title: '正在加载界面',
+      mask:true
+    })
+    var time = util.formatTime(new Date());
     usres.where({
       time:time
     }).get({
@@ -73,6 +29,14 @@ Page({
       listEvent.push(res.data[i])
       }
       console.log(res);
+      setTimeout(
+        ()=>{
+          wx.hideLoading()
+          this.setData({
+            listEvent:listEvent
+          })
+        },200
+      )
     }})
     //新增事件
     if (options.type === 'newEvent') {
@@ -82,7 +46,7 @@ Page({
       if (options.dimension) {
         listEvent.push({
           dimension: options.dimension,
-          detail: this.options.detail,
+          detail: options.detail,
           tag: [
             options.tags0 === 'undefined' ? '' : options.tags0,
             options.tags1 === 'undefined' ? '' : options.tags1,
@@ -93,9 +57,6 @@ Page({
           time : options.time,
           imgpath: options.imgpath,
           tagscolor: [options.tagsmirrorcolor1 === 'undefined' ? '' : options.tagsmirrorcolor1, options.tagsmirrorcolor2 === 'undefined' ? '' : options.tagsmirrorcolor2, options.tagsmirrorcolor3 === 'undefined' ? '' : options.tagsmirrorcolor3]
-        })
-        this.setData({
-          listEvent:listEvent
         })
       }
     }
