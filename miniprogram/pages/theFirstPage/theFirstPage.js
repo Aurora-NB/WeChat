@@ -51,10 +51,9 @@ Page({
               }
             }
           })
-          return 
         }
-        console.log(true);
-        
+        else{
+         
         for (var i = 0; i < res.data.length; i++) {
           var listEvent = this.data.listEvent
           res.data[i].index = listEvent.length
@@ -69,6 +68,7 @@ Page({
             })
           }, 200)
       }
+    }
     })
     //新增事件
     // if (options.type === 'newEvent') {
