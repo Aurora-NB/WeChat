@@ -81,7 +81,7 @@ Page({
         wx.reLaunch({
           url: '../theFirstPage/theFirstPage?index=' + index + '&dimension=' + dimension + '&hasdone=' + hasdone + '&detail=' + detail + '&type=saveEvent',
         })
-      }, 500)
+      }, 500) 
     } else {
       wx.showToast({
         icon: 'none',

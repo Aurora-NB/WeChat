@@ -121,6 +121,7 @@ Page({
     usres.doc(list[e.currentTarget.dataset.index - 0]._id).update({
       data:{
       hasdone: list[e.currentTarget.dataset.index].hasdone
+
       },success:res=>{
         console.log(res);
       }
