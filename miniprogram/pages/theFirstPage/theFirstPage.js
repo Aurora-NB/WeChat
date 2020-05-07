@@ -35,6 +35,7 @@ Page({
       _openid: openid
     }).get({
       success: res => {
+        // 如果没有则引导用户添加日常
         if (res.data.length === 0) {
           wx.hideLoading()
           wx.showModal({

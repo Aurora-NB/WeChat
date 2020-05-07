@@ -96,8 +96,6 @@ textarea {
   justify-content: space-between;
 }
 
-.titleInput{
+.titleInput {
   width: 60%;
 }
-
-

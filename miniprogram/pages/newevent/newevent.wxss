@@ -131,7 +131,7 @@
 .biaoqianview {
   display: inline-block;
   width: 32vw;
-  padding-right:1.1vw ;
+  padding-right: 1.1vw;
 }
 
 /* 删除标签的样式 */
@@ -145,5 +145,5 @@
 .icon-evnet {
   display: inline-block;
   border-radius: 1em;
-  margin-left:1.3vw ;
+  margin-left: 1.3vw;
 }

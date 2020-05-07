@@ -1,7 +1,9 @@
 const app = getApp()
 Page({
   data: {
-    userInfo: {avatarUrl:'../../image/userhead2.png'},
+    userInfo: {
+      avatarUrl: '../../image/userhead2.png'
+    },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     text1: '登录',
@@ -40,18 +42,19 @@ Page({
         }
       })
     }
-    
+
   },
   getUserInfo: function (e) {
-    if(e.detail.userInfo){
+    if (e.detail.userInfo) {
       console.log(e)
       app.globalData.userInfo = e.detail.userInfo
       this.setData({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
-      })}
+      })
+    }
   },
-  about:function(){
+  about: function () {
     wx.navigateTo({
       url: '../about/about',
     })
