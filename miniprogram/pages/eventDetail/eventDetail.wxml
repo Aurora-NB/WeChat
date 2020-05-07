@@ -3,7 +3,7 @@
 	<view class="h">详情</view>
 	<view style="display: flex; width: 95%;">
 		<view class="title butn">
-			<input class="titleInput" value="{{dimension}}" maxlength="8" bindinput="titleChange"></input>
+			<input class="titleInput" value="{{dimension}}" maxlength="8" bindblur="titleChange"></input>
 			<icon type="success" wx:if="{{hasdone}}"   bindtap="ifhasdone" style="float:right;"></icon>
 			<icon type="cancel" wx:if="{{!hasdone}}"  bindtap="ifhasdone" style="float:right;"></icon>
 		</view>
@@ -15,7 +15,7 @@
 
 	<view class="bottom-view">
 		<view>
-			<textarea placeholder="详情" auto-height="true" maxlength="-1" value="{{detail}}" bindinput="detailChange"></textarea>
+			<textarea placeholder="详情" auto-height="true" maxlength="-1" value="{{detail}}" bindblur="detailChange"></textarea>
 
 
 		</view>

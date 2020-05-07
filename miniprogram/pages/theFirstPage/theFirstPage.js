@@ -1,6 +1,7 @@
 const db = wx.cloud.database()
-const phtotos=db.collection('phtotos')
+
 const usres=db.collection('users')
+const phtotos=db.collection('phtotos')
 var app = getApp()
 var util = require('../../utils/util.js');
 Page({
@@ -13,13 +14,27 @@ Page({
     ]
   },
   onLoad: function (options) {
+    var openid;
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'getApid',
+      // 传给云函数的参数
+      data: {
+      },
+      success: function(res) {
+       openid =res.openid
+       console.log(res);
+      },
+      fail: console.error
+    })
     wx.showLoading({
       title: '正在加载界面',
       mask:true
     })
     var time = util.formatTime(new Date());
     usres.where({
-      time:time
+      time:time,
+      _openid:openid
     }).get({
       success:res=>{
     for(var i=0;i<res.data.length;i++)
@@ -39,48 +54,51 @@ Page({
       )
     }})
     //新增事件
-    if (options.type === 'newEvent') {
-      console.log('new', options)
-      var listEvent = this.data.listEvent
-      var l = listEvent.length
-      if (options.dimension) {
-        listEvent.push({
-          dimension: options.dimension,
-          detail: options.detail,
-          tag: [
-            options.tags0 === 'undefined' ? '' : options.tags0,
-            options.tags1 === 'undefined' ? '' : options.tags1,
-            options.tags2 === 'undefined' ? '' : options.tags2
-          ],
-          index: l,
-          hasdone: false,
-          time : options.time,
-          imgpath: options.imgpath,
-          tagscolor: [options.tagsmirrorcolor1 === 'undefined' ? '' : options.tagsmirrorcolor1, options.tagsmirrorcolor2 === 'undefined' ? '' : options.tagsmirrorcolor2, options.tagsmirrorcolor3 === 'undefined' ? '' : options.tagsmirrorcolor3]
-        })
-      }
-    }
-    else if (options.type === 'saveEvent') {
-      console.log('save', options)
-      //保存事件
-      var list = this.data.listEvent
-      list[options.index].dimension = options.dimension
-      list[options.index].detail = options.detail
-      this.setData({
-        listEvent: list
-      })
-    } 
-    else if (options.type === 'deleteEvent') {
-      //删除事件
-      console.log('delete', options)
+    // if (options.type === 'newEvent') {
+    //   console.log('new', options)
+    //   var listEvent = this.data.listEvent
+    //   var l = listEvent.length
+    //   if (options.dimension) {
+    //     listEvent.push({
+    //       dimension: options.dimension,
+    //       detail: options.detail,
+    //       tag: [
+    //         options.tags0 === 'undefined' ? '' : options.tags0,
+    //         options.tags1 === 'undefined' ? '' : options.tags1,
+    //         options.tags2 === 'undefined' ? '' : options.tags2
+    //       ],
+    //       index: l,
+    //       hasdone: false,
+    //       time : options.time,
+    //       imgpath: options.imgpath,
+    //       tagscolor: [options.tagsmirrorcolor1 === 'undefined' ? '' : options.tagsmirrorcolor1, options.tagsmirrorcolor2 === 'undefined' ? '' : options.tagsmirrorcolor2, options.tagsmirrorcolor3 === 'undefined' ? '' : options.tagsmirrorcolor3]
+    //     })
+    //   }
+    // }
+    // else
+    //  if (options.type === 'saveEvent') {
+    //   console.log('save', options)
+    //   //保存事件
+    //   var list = this.data.listEvent
+    //   var index=options.index-0;
+    //   list[index].dimension = options.dimension
+    //   list[index].detail = options.detail
+    //   this.setData({
+    //     listEvent: list
+    //   })
+    // } 
+    // else 
+    // if (options.type === 'deleteEvent') {
+    //   //删除事件
+    //   console.log('delete', options)
 
-      var list = this.data.listEvent
-      list.splice(options.index, 1)
+    //   var list = this.data.listEvent
+    //   list.splice(options.index, 1)
 
-      this.setData({
-        listEvent: list
-      })
-    }
+    //   this.setData({
+    //     listEvent: list
+    //   })
+    // }
 
   },
   //圆圈被点击
@@ -109,8 +127,11 @@ Page({
     var tag1 = this.data.listEvent[index].tag[0]
     var tag2 = this.data.listEvent[index].tag[1]
     var tag3 = this.data.listEvent[index].tag[2]
+    var id=this.data.listEvent[index]._id
+    var openid=this.data.listEvent[index]._openid
+    var fileID=this.data.listEvent[index].fileID?'':this.data.listEvent[index].fileID
     wx.navigateTo({
-      url: '../eventDetail/eventDetail?dimension=' + dimension + '&hasdone=' + hasdone + '&time=' + time + '&detail=' + detail + '&tag1=' + tag1 + '&tag2=' + tag2 + '&tag3=' + tag3 + '&index=' + index,
+      url: '../eventDetail/eventDetail?dimension=' + dimension + '&hasdone=' + hasdone + '&time=' + time + '&detail=' + detail + '&tag1=' + tag1 + '&tag2=' + tag2 + '&tag3=' + tag3 + '&index=' + index+'&id='+id+'&openid='+openid+'&fileID='+fileID,
       complete: (res) => {},
     })
   },
