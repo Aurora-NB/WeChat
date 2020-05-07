@@ -10,8 +10,6 @@
 		<navigator url="../newevent/newevent?index={{listEvent[listEvent.length-1].index}}" class="icon-jiahao iconfont plus-css"></navigator>
 
 	</view>
-
-	<view wx:if="{{listEvent.length === 0}}" style="color:red;">你还没有任何日常呢，快去添加一个日常吧！</view>
 	<view class="event-continer">
 		<!-- 事件的地方 -->
 		<view class="events" wx:for="{{listEvent}}" wx:key="*this">

@@ -91,6 +91,8 @@
   background-color: white;
   width: 650rpx;
   height: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .event-continer {
@@ -101,8 +103,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 10px;
-  padding-top: 7px;
 }
 
 .tags {

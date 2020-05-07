@@ -52,6 +52,19 @@ Page({
           })
         },200
       )
+      wx.showModal({
+        title: '',
+        content: '你还没有任何日常呢，快去添加吧！',
+        success (res) {
+          if (res.confirm) {
+            wx.redirectTo({
+              url: '../newevent/newevent',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
     }})
     //新增事件
     // if (options.type === 'newEvent') {
