@@ -80,7 +80,7 @@
 
 /* 标签摁下回车符以后的样式 */
 .biaoqian-input {
-  width: 18vw;
+  width: 17vw;
   padding-right: 2vw;
   font-weight: 600;
   display: inline-block;

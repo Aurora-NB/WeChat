@@ -12,14 +12,16 @@
 		<block wx:for="{{tags}}" wx:key="*this">
 			<view class="icon-evnet" style="background-color:{{tagsmirrorcolor[index]}};">
 				<view class="icon-shoucang- iconfont icon-class" bindtap="biaoqian"></view>
-				<view class="biaoqian-input"><input name="tapinput{{index}}" placeholder="标签" bindblur="biaoqianblur" maxlength="7" data-index="{{index}}" value="{{tags[index]}}"></input></view>
+				<view class="biaoqian-input">
+					<input name="tapinput{{index}}" placeholder="标签" bindblur="biaoqianblur" maxlength="7" data-index="{{index}}" value="{{tags[index]}}"></input>
+				</view>
 				<view class="deletebiaoqian iconfont icon-ziyuan" bindtap="deletetap" data-index="{{index}}"></view>
 			</view>
 		</block>
 
 		<!-- 标签输入 -->
 		<view class="biaoqianview">
-			<input wx:if="{{tags.length<3}}" class="biaoqianinput" placeholder="在这里输入标签" bindconfirm="biaoqianconfim" bindblur="tapsblur"  value="{{baioqianvalue}}" maxlength="5">
+			<input wx:if="{{tags.length<3}}" class="biaoqianinput" placeholder="在这里输入标签" bindconfirm="biaoqianconfim" bindblur="tapsblur" value="{{baioqianvalue}}" maxlength="5">
 			</input>
 		</view>
 	</view>
@@ -29,7 +31,7 @@
 	</view>
 	<!-- 图片上传 -->
 	<view>
-		<image wx:if="{{imgPath}}"  class="download" src="{{imgPath}}" mode="widthFix" bindtap="photoload">
+		<image wx:if="{{imgPath}}" class="download" src="{{imgPath}}" mode="widthFix" bindtap="photoload">
 		</image>
 	</view>
 	<!-- 提交按钮 -->

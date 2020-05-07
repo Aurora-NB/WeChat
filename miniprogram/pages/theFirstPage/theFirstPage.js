@@ -105,6 +105,13 @@ Page({
   circleTap: function (e) {
     app.changeEvent(e, this)
     var list = this.data.listEvent
+    usres.doc(list[e.currentTarget.dataset.index - 0]._id).update({
+      data:{
+      hasdone: !list[e.currentTarget.detail.index].hasdone
+      },success:res=>{
+        console.log(res);
+      }
+    })
     var sn = true
     for (var i = 0; i < list.length; i++) {
       if (list[i].hasdone === false) sn = false

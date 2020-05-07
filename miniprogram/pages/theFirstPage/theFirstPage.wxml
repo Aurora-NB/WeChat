@@ -8,18 +8,21 @@
 	<view class="event-top">
 		<view>你的日常</view>
 		<navigator url="../newevent/newevent?index={{listEvent[listEvent.length-1].index}}" class="icon-jiahao iconfont plus-css"></navigator>
+
 	</view>
+
+	<view wx:if="{{listEvent.length === 0}}" style="color:red;">你还没有任何日常呢，快去添加一个日常吧！</view>
 	<view class="event-continer">
 		<!-- 事件的地方 -->
-
 		<view class="events" wx:for="{{listEvent}}" wx:key="*this">
+
 			<view class="events" catchtap="eventTap" data-index="{{item.index}}">
 				<!-- <icon size="20" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" type="{{'success'}}" ></icon> -->
-				<image  class="icon-ok" src="../../image/success.png"  data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}"  mode="widthFix"></image>
-				<image  class="cricle" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{!item.hasdone}}" src="../../image/yuan.png" mode="widthFix"></image>
+				<image class="icon-ok" src="../../image/success.png" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" mode="widthFix"></image>
+				<image class="cricle" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{!item.hasdone}}" src="../../image/yuan.png" mode="widthFix"></image>
 				<view class="text-dir">{{item.dimension}}</view>
-				<view class="tags"  wx:for="{{item.tag}}" wx:key="*this" wx:for-item="it" >
-					<view class="tag-detail" style="background-color:{{item.tagscolor[index]}}"  ><text wx:if="{{it!=''&&item.tagscolor[index]!=''}}" >{{it}}</text></view>
+				<view class="tags" wx:for="{{item.tag}}" wx:key="*this" wx:for-item="it">
+					<view class="tag-detail" style="background-color:{{item.tagscolor[index]}}"><text wx:if="{{it!=''&&item.tagscolor[index]!=''}}" >{{it}}</text></view>
 				</view>
 			</view>
 		</view>
