@@ -70,7 +70,7 @@
 
 /* 圆形图片 */
 .cricle {
-  width: 7vw;
+  width: 14vw;
   height: auto;
 }
 
@@ -90,9 +90,10 @@
   margin: 13rpx;
   background-color: white;
   width: 650rpx;
-  height: 35px;
+  height: 45px;
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 90%;
 }
 
 .event-continer {
@@ -124,6 +125,6 @@
 }
 /* 对号的样式 */
 .icon-ok{
-  width: 7vw;
+  width: 14vw;
   height: auto;
 }
