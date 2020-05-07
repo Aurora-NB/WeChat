@@ -107,7 +107,7 @@ Page({
     var list = this.data.listEvent
     usres.doc(list[e.currentTarget.dataset.index - 0]._id).update({
       data:{
-      hasdone: !list[e.currentTarget.detail.index].hasdone
+      hasdone: list[e.currentTarget.dataset.index].hasdone
       },success:res=>{
         console.log(res);
       }
