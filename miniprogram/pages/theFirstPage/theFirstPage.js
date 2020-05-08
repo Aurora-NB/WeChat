@@ -41,7 +41,7 @@ Page({
           wx.showModal({
             title: '',
             content: '你还没有任何日常呢，快去添加吧！',
-            success(res) {
+            success:res=> {
               if (res.confirm) {
                 wx.redirectTo({
                   url: '../newevent/newevent',
@@ -108,15 +108,12 @@ Page({
     // if (options.type === 'deleteEvent') {
     //   //删除事件
     //   console.log('delete', options)
-
     //   var list = this.data.listEvent
     //   list.splice(options.index, 1)
-
     //   this.setData({
     //     listEvent: list
     //   })
     // }
-
   },
   //圆圈被点击
   circleTap: function (e) {
@@ -161,4 +158,30 @@ Page({
       complete: (res) => {},
     })
   },
+  eventtoptap(e){
+    wx.getUserInfo({
+      success:res=>{
+        console.log(res);
+        
+        wx.navigateTo({
+          url: '../newevent/newevent',
+        })
+      },
+      fail:res=>{
+        console.log(res);
+        wx.showToast({
+          title: '请登录后再试',
+          icon: 'none',
+          duration: 800
+        })
+        setTimeout(
+          ()=>{
+            wx.reLaunch({
+              url: '../Individuals/Individuals',
+            })
+          },800
+        )
+      }
+    })
+  }
 })
