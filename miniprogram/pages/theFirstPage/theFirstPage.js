@@ -1,11 +1,9 @@
 const db = wx.cloud.database()
-
 const usres = db.collection('users')
 const phtotos = db.collection('phtotos')
 var app = getApp()
 var util = require('../../utils/util.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -41,7 +39,7 @@ Page({
           wx.showModal({
             title: '',
             content: '你还没有任何日常呢，快去添加吧！',
-            success:res=> {
+            success: res => {
               if (res.confirm) {
                 wx.redirectTo({
                   url: '../newevent/newevent',
@@ -51,24 +49,23 @@ Page({
               }
             }
           })
+        } else {
+
+          for (var i = 0; i < res.data.length; i++) {
+            var listEvent = this.data.listEvent
+            res.data[i].index = listEvent.length
+            listEvent.push(res.data[i])
+          }
+          console.log(res);
+          setTimeout(
+            () => {
+              wx.hideLoading()
+              this.setData({
+                listEvent: listEvent
+              })
+            }, 200)
         }
-        else{
-         
-        for (var i = 0; i < res.data.length; i++) {
-          var listEvent = this.data.listEvent
-          res.data[i].index = listEvent.length
-          listEvent.push(res.data[i])
-        }
-        console.log(res);
-        setTimeout(
-          () => {
-            wx.hideLoading()
-            this.setData({
-              listEvent: listEvent
-            })
-          }, 200)
       }
-    }
     })
     //新增事件
     // if (options.type === 'newEvent') {
@@ -155,19 +152,19 @@ Page({
     var fileID = this.data.listEvent[index].fileID ? '' : this.data.listEvent[index].fileID
     wx.navigateTo({
       url: '../eventDetail/eventDetail?dimension=' + dimension + '&hasdone=' + hasdone + '&time=' + time + '&detail=' + detail + '&tag1=' + tag1 + '&tag2=' + tag2 + '&tag3=' + tag3 + '&index=' + index + '&id=' + id + '&openid=' + openid + '&fileID=' + fileID,
-      complete: (res) => {},
+      complete: (res) => { },
     })
   },
-  eventtoptap(e){
+  eventtoptap(e) {
     wx.getUserInfo({
-      success:res=>{
+      success: res => {
         console.log(res);
-        
+
         wx.navigateTo({
           url: '../newevent/newevent',
         })
       },
-      fail:res=>{
+      fail: res => {
         console.log(res);
         wx.showToast({
           title: '请登录后再试',
@@ -175,11 +172,11 @@ Page({
           duration: 800
         })
         setTimeout(
-          ()=>{
+          () => {
             wx.reLaunch({
               url: '../Individuals/Individuals',
             })
-          },800
+          }, 800
         )
       }
     })

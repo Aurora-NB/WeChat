@@ -36,8 +36,6 @@ Page({
 
   //详情改变
   detailChange: function (e) {
-    console.log(e);
-
     this.setData({
       detail: e.detail.value
     })
@@ -56,11 +54,11 @@ Page({
         data: {
           dimension: that.data.dimension,
           index: that.data.index - 0,
-          hasdone: (that.data.hasdone === 'true') ? true : false,
+          hasdone: that.data.hasdone,
           time: that.data.time,
           detail: that.data.detail,
           fileID: that.data.fileID == 'undefined' ? '' : that.data.fileID,
-          tag: that.data.tag
+          tag: that.data.tag,
         },
         success: res => {
           console.log(res);
