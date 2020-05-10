@@ -1,5 +1,5 @@
 page{
-  height: 51%;
+  height: 90%;
 }
 .individuals{
   background: #23EBB9;
@@ -12,7 +12,7 @@ page{
   align-items: center;
 }
 .user{
-  background-color: #ffffff;
+  background: #23EBB9;
   width: 90%;
   height: 30vw;
   border-radius: 5px;
@@ -37,6 +37,7 @@ page{
   justify-content: space-between;
 }
 .other-options{
+  bottom: 0;
   margin-top: 20vw;
   width: 100%;
   display: flex;
