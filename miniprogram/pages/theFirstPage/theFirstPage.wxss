@@ -123,6 +123,6 @@
 }
 
 /* 对号的样式 */
-.icon-ok{
+.icon-ok {
   width: 10vw;
 }

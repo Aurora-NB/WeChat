@@ -152,7 +152,7 @@ Page({
     var fileID = this.data.listEvent[index].fileID ? '' : this.data.listEvent[index].fileID
     wx.navigateTo({
       url: '../eventDetail/eventDetail?dimension=' + dimension + '&hasdone=' + hasdone + '&time=' + time + '&detail=' + detail + '&tag1=' + tag1 + '&tag2=' + tag2 + '&tag3=' + tag3 + '&index=' + index + '&id=' + id + '&openid=' + openid + '&fileID=' + fileID,
-      complete: (res) => { },
+      complete: (res) => {},
     })
   },
   eventtoptap(e) {
