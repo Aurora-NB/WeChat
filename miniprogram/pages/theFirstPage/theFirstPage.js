@@ -1,7 +1,7 @@
 const db = wx.cloud.database()
 
-const usres=db.collection('users')
-const phtotos=db.collection('phtotos')
+const usres = db.collection('users')
+const phtotos = db.collection('phtotos')
 var app = getApp()
 var util = require('../../utils/util.js');
 Page({
@@ -10,8 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listEvent: [
-    ]
+    listEvent: []
   },
   onLoad: function (options) {
     var openid;
@@ -19,53 +18,58 @@ Page({
       // 云函数名称
       name: 'getApid',
       // 传给云函数的参数
-      data: {
-      },
-      success: function(res) {
-       openid =res.openid
-       console.log(res);
+      data: {},
+      success: function (res) {
+        openid = res.openid
+        console.log(res);
       },
       fail: console.error
     })
     wx.showLoading({
       title: '正在加载界面',
-      mask:true
+      mask: true
     })
     var time = util.formatTime(new Date());
     usres.where({
-      time:time,
-      _openid:openid
+      time: time,
+      _openid: openid
     }).get({
-      success:res=>{
-    for(var i=0;i<res.data.length;i++)
-      {
-      var listEvent=this.data.listEvent
-      res.data[i].index=listEvent.length
-      listEvent.push(res.data[i])
-      }
-      console.log(res);
-      setTimeout(
-        ()=>{
+      success: res => {
+        // 如果没有则引导用户添加日常
+        if (res.data.length === 0) {
           wx.hideLoading()
-          this.setData({
-            listEvent:listEvent
+          wx.showModal({
+            title: '',
+            content: '你还没有任何日常呢，快去添加吧！',
+            success(res) {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '../newevent/newevent',
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
           })
-        },200
-      )
-      wx.showModal({
-        title: '',
-        content: '你还没有任何日常呢，快去添加吧！',
-        success (res) {
-          if (res.confirm) {
-            wx.redirectTo({
-              url: '../newevent/newevent',
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
         }
-      })
-    }})
+        else{
+         
+        for (var i = 0; i < res.data.length; i++) {
+          var listEvent = this.data.listEvent
+          res.data[i].index = listEvent.length
+          listEvent.push(res.data[i])
+        }
+        console.log(res);
+        setTimeout(
+          () => {
+            wx.hideLoading()
+            this.setData({
+              listEvent: listEvent
+            })
+          }, 200)
+      }
+    }
+    })
     //新增事件
     // if (options.type === 'newEvent') {
     //   console.log('new', options)
@@ -119,10 +123,11 @@ Page({
     app.changeEvent(e, this)
     var list = this.data.listEvent
     usres.doc(list[e.currentTarget.dataset.index - 0]._id).update({
-      data:{
-      hasdone: list[e.currentTarget.dataset.index].hasdone
+      data: {
+        hasdone: list[e.currentTarget.dataset.index].hasdone
 
-      },success:res=>{
+      },
+      success: res => {
         console.log(res);
       }
     })
@@ -148,11 +153,11 @@ Page({
     var tag1 = this.data.listEvent[index].tag[0]
     var tag2 = this.data.listEvent[index].tag[1]
     var tag3 = this.data.listEvent[index].tag[2]
-    var id=this.data.listEvent[index]._id
-    var openid=this.data.listEvent[index]._openid
-    var fileID=this.data.listEvent[index].fileID?'':this.data.listEvent[index].fileID
+    var id = this.data.listEvent[index]._id
+    var openid = this.data.listEvent[index]._openid
+    var fileID = this.data.listEvent[index].fileID ? '' : this.data.listEvent[index].fileID
     wx.navigateTo({
-      url: '../eventDetail/eventDetail?dimension=' + dimension + '&hasdone=' + hasdone + '&time=' + time + '&detail=' + detail + '&tag1=' + tag1 + '&tag2=' + tag2 + '&tag3=' + tag3 + '&index=' + index+'&id='+id+'&openid='+openid+'&fileID='+fileID,
+      url: '../eventDetail/eventDetail?dimension=' + dimension + '&hasdone=' + hasdone + '&time=' + time + '&detail=' + detail + '&tag1=' + tag1 + '&tag2=' + tag2 + '&tag3=' + tag3 + '&index=' + index + '&id=' + id + '&openid=' + openid + '&fileID=' + fileID,
       complete: (res) => {},
     })
   },

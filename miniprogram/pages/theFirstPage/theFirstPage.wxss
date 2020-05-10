@@ -123,8 +123,8 @@
   border-radius: 1em;
   font-size: x-small;
 }
+
 /* 对号的样式 */
 .icon-ok{
   width: 14vw;
-  height: auto;
 }

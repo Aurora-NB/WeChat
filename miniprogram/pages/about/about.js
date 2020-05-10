@@ -62,7 +62,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title:'微光',
+      title: '微光',
       imageUrl: '../../image/mainIcon.png'
 
     }

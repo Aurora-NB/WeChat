@@ -1,5 +1,5 @@
 const db = wx.cloud.database()
-const usres=db.collection('users')
+const usres = db.collection('users')
 Page({
   data: {
     dimension: '事件',
@@ -13,17 +13,17 @@ Page({
   onLoad: function (options) {
     //获取事件数据
     console.log(options);
-    
+
     this.setData({
       dimension: options.dimension,
-      index: options.index-0,
+      index: options.index - 0,
       hasdone: (options.hasdone === 'true') ? true : false,
       time: options.time,
       detail: options.detail,
-      id:options.id,
-      openid:options.openid,
-      fileID:options.fileID,
-      tag:[options.tag1=='undefined'?'':options.tag1,options.tag2=='undefined'?'':options.tag2,options.tag3=='undefined'?'':options.tag3]
+      id: options.id,
+      openid: options.openid,
+      fileID: options.fileID,
+      tag: [options.tag1 == 'undefined' ? '' : options.tag1, options.tag2 == 'undefined' ? '' : options.tag2, options.tag3 == 'undefined' ? '' : options.tag3]
     })
   },
 
@@ -37,7 +37,7 @@ Page({
   //详情改变
   detailChange: function (e) {
     console.log(e);
-    
+
     this.setData({
       detail: e.detail.value
     })
@@ -45,7 +45,7 @@ Page({
 
   // 保存
   saveTap: function () {
-    var that=this
+    var that = this
     var n = 1;
     if (this.data.dimension === '') {
       n = 0;
@@ -53,17 +53,18 @@ Page({
     if (n === 1) {
       console.log(that.data);
       usres.doc(that.data.id).update({
-        data:{
-        dimension: that.data.dimension,
-        index: that.data.index-0,
-        hasdone: (that.data.hasdone === 'true') ? true : false,
-        time: that.data.time,
-        detail: that.data.detail,
-        fileID:that.data.fileID=='undefined'?'':that.data.fileID,
-        tag:that.data.tag
-        },success:res=>{
+        data: {
+          dimension: that.data.dimension,
+          index: that.data.index - 0,
+          hasdone: (that.data.hasdone === 'true') ? true : false,
+          time: that.data.time,
+          detail: that.data.detail,
+          fileID: that.data.fileID == 'undefined' ? '' : that.data.fileID,
+          tag: that.data.tag
+        },
+        success: res => {
           console.log(res);
-          
+
         }
       })
       wx.showToast({
@@ -75,13 +76,13 @@ Page({
       var dimension = this.data.dimension
       var hasdone = this.data.hasdone
       var detail = this.data.detail
-      
+
       setTimeout(function () {
         //要延时执行的代码
         wx.reLaunch({
           url: '../theFirstPage/theFirstPage?index=' + index + '&dimension=' + dimension + '&hasdone=' + hasdone + '&detail=' + detail + '&type=saveEvent',
         })
-      }, 500) 
+      }, 500)
     } else {
       wx.showToast({
         icon: 'none',
@@ -100,7 +101,7 @@ Page({
       success(res) {
         if (res.confirm) {
           usres.doc(that.data.id).remove({
-            success:res=>{
+            success: res => {
               console.log(res);
             }
           })
@@ -115,14 +116,14 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title:'微光',
+      title: '微光',
       imageUrl: '../../image/mainIcon.png'
     }
-  }
-  ,ifhasdone(e){
-    var hasdone=!this.data.hasdone
+  },
+  ifhasdone(e) {
+    var hasdone = !this.data.hasdone
     this.setData({
-      hasdone:hasdone
+      hasdone: hasdone
     })
   }
 })
