@@ -170,11 +170,6 @@ Page({
           filePath: tempFilePaths[0],
           success: res => {
             console.log(res)
-            phtotos.add({
-              data: {
-                fileID: res.fileID
-              }
-            })
             wx.cloud.getTempFileURL({
               fileList: [{
                 fileID: res.fileID,
@@ -209,6 +204,7 @@ Page({
   },
   headerblur(e) {
     var listEvent = this.data.listEvent;
+    
     listEvent.dimension = e.detail.value;
     this.setData({
       listEvent: listEvent
