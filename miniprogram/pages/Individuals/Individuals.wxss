@@ -1,9 +1,12 @@
+page{
+  height: 51%;
+}
 .individuals{
   background: #23EBB9;
   padding-top: 50rpx;
   margin: 0;
   width: 100%;
-  height: 500rpx;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +14,7 @@
 .user{
   background-color: #ffffff;
   width: 90%;
-  height: 100px;
+  height: 30vw;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -19,13 +22,13 @@
 
 }
 .userhead{
-  width: 150rpx;
-  height: 150rpx;
+  height: 25vw;
+  width: 25vw;
   border-radius: 50%;
   background-color: rgb(187, 186, 186);
   /* background-color:#ffffff; */
   border: 1px solid black; 
-  margin-right: 30rpx;
+  margin-right: 5vw;
 }
 .detail{
   height: 60%;
@@ -34,19 +37,20 @@
   justify-content: space-between;
 }
 .other-options{
-  margin-top: 100rpx;
+  margin-top: 20vw;
   width: 100%;
   display: flex;
+  height: auto;
   flex-direction: column;
-  padding-right: 40rpx;
 }
 .options{
-  width: 90%;
+  width: 91%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20rpx;
   padding-left: 50rpx;
+  background-color: white;
 }
 .arrow{
   height: 30rpx;
@@ -63,9 +67,9 @@
 .gif-wave {
   position: absolute;
   width: 100%;
-  bottom: 220px;
+  top: 37vw;
   left: 0;
   z-index: 99;
   mix-blend-mode: screen;
-  height: 100rpx;
+  height: 20vw;
 }
