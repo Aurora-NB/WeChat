@@ -1,4 +1,8 @@
-.individuals {
+
+page{
+  height: 90%;
+}
+.individuals{
   background: #23EBB9;
   padding-top: 50rpx;
   margin: 0;
@@ -12,6 +16,7 @@
 .user {
   /* background-color: #ffffff; */
   background-color: #23EBB9;
+
   width: 90%;
   height: 100px;
   border-radius: 5px;
@@ -38,7 +43,6 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
 .other-options {
   background-color: #ffffff;
   margin-top: 100rpx;
