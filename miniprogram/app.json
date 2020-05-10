@@ -30,7 +30,5 @@
     "selectedColor": "#f70808"
   },
   "cloud":true,
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
-  
+  "sitemapLocation": "sitemap.json"
 }
