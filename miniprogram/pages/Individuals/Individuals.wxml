@@ -5,13 +5,15 @@
 		<image class="userhead" src="{{userInfo.avatarUrl}}"></image>
 		<view class="detail">
 		<!-- <text style="font-size:50rpx;"  wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo"  bindgetuserinfo="getUserInfo">登录</text> -->
-			<button  class="button-log" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo"  style=" width:200rpx; background:#ffffff;" bindgetuserinfo="getUserInfo">登录</button>
-			<text style="font-size:50rpx;"  wx:if="{{!(!hasUserInfo && canIUse)}}">{{userInfo.nickName}}</text>
+		<view class="view-log">
+			<button   class="button-log" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo"  style=" width:100rpx;  background-color:#23EBB9" bindgetuserinfo="getUserInfo">登录</button>
+		</view> 
+			<text  style="font-size:50rpx;"  wx:if="{{!(!hasUserInfo && canIUse)}}">{{userInfo.nickName}}</text>
 			<text style="font-size:30rpx;color:#918597;">仅支持微信登录</text>
 		</view>
 	</view>
-
 	<view class="other-options">
+
 		<view class="options">
 			<text  style="font-size:40rpx;">分享小程序</text>
 			<image src="../../image/arrow.png" class="arrow"></image>
@@ -23,5 +25,4 @@
 		</view>
 		<image src='https://6661-fatdown-wxapp-sg2p1-1300398887.tcb.qcloud.la/wave.gif?sign=045605c672f482a8c3d428abed669aa7&t=1570674356' mode='scaleToFill' class='gif-wave'></image>
 	</view>
-
 </view>
