@@ -14,9 +14,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '正在加载',
-    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -45,6 +42,7 @@ Page({
         }
       })
     }
+
   },
   getUserInfo: function (e) {
     if (e.detail.userInfo) {
@@ -59,11 +57,6 @@ Page({
   about: function () {
     wx.navigateTo({
       url: '../about/about',
-    })
-  },
-  imageLoad: function(){
-    wx.hideLoading({
-      complete: (res) => {},
     })
   }
 

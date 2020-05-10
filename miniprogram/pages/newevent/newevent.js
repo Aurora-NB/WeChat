@@ -247,8 +247,7 @@ Page({
     })
   },
   // 当标签的光标消失
-  tapsblur(e){
-    if(e.detail.value === '') return
+  tapsblur(e) {
     var tags = this.data.tags
     var tagscolor = this.data.tagscolor
     var tagsmirrorcolor = this.data.tagsmirrorcolor

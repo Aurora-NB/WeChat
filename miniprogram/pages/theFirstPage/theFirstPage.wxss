@@ -70,7 +70,7 @@
 
 /* 圆形图片 */
 .cricle {
-  width: 10vw;
+  width: 7vw;
   height: auto;
 }
 
@@ -87,10 +87,12 @@
   display: flex;
   direction: row;
   align-items: center;
+  margin: 13rpx;
   background-color: white;
-  height: 13vw;
-  margin-top: 1vw;
-  width: 90%;
+  width: 650rpx;
+  height: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .event-continer {
@@ -100,8 +102,7 @@
   direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
-  padding-bottom: 2vw;
+  justify-content: space-between;
 }
 
 .tags {
@@ -123,6 +124,7 @@
 }
 
 /* 对号的样式 */
-.icon-ok{
-  width: 10vw;
+.icon-ok {
+  width: 7vw;
+  height: auto;
 }

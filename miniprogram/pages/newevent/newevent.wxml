@@ -21,7 +21,7 @@
 
 		<!-- 标签输入 -->
 		<view class="biaoqianview">
-			<input wx:if="{{tags.length<3}}" class="biaoqianinput" placeholder="请输入标签" bindconfirm="biaoqianconfim" bindblur="tapsblur" value="{{baioqianvalue}}" maxlength="5">
+			<input wx:if="{{tags.length<3}}" class="biaoqianinput" placeholder="在这里输入标签" bindconfirm="biaoqianconfim" bindblur="tapsblur" value="{{baioqianvalue}}" maxlength="5">
 			</input>
 		</view>
 	</view>
