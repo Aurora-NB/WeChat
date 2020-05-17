@@ -42,7 +42,8 @@ Page({
     this.setData({
       tagsmirrorcolor: tagsmirrorcolor,
       listEvent: listEvent,
-      baioqianvalue: ''
+      baioqianvalue: '',
+      biaoqianplacehold:''
     })
   },
 
@@ -130,9 +131,9 @@ Page({
   },
   //标签光标消失的事件
   biaoqian(e) {
-    console.log(e)
     var tags = this.data.tags
     var tagscolor = this.data.tagscolor
+    var tagsmirrorcolor = this.data.tagsmirrorcolor
     tagscolor.sort(function () {
       return Math.random() - 0.5;
     });
@@ -141,7 +142,8 @@ Page({
       this.setData({
         tags: tags,
         baioqianvalue: '',
-        tagscolor: tagscolor
+        tagscolor: tagscolor,
+        biaoqianplacehold:'输入标签'
       })
     }
   },
@@ -195,12 +197,23 @@ Page({
   },
   //输入得到标签的样式
   biaoqianblur(e) {
-    var tags = this.data.tags
-    var value = e.detail.value
-    tags[e.target.dataset.index] = value;
-    this.setData({
-      tags: tags
-    });
+    console.log(e);
+    if(e.detail.value!=='')
+    {
+      var tags=this.data.tags
+      if(this.data.tags.length!==1){
+      tags.push(e.detail.value)
+      console.log(tags);
+      }
+      else
+      {
+        tags[0]=e.detail.value;
+      }
+      this.setData({
+        biaoqianplacehold: '标签输入',
+        tags:tags
+      })
+    }
   },
   headerblur(e) {
     var listEvent = this.data.listEvent;
@@ -239,6 +252,7 @@ Page({
     tags.splice(e.target.dataset.index, 1)
     this.setData({
       tags: tags,
+      biaoqianplacehold: '标签输入',
       tagsmirrorcolor: tagsmirrorcolor
     })
   },
@@ -264,7 +278,8 @@ Page({
         tags: tags,
         baioqianvalue: '',
         tagscolor: tagscolor,
-        tagsmirrorcolor: tagsmirrorcolor
+        tagsmirrorcolor: tagsmirrorcolor,
+        biaoqianplacehold:'输入标签'
       })
     }
   }

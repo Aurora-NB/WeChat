@@ -27,7 +27,8 @@
         "selectedIconPath": "image/mine(1).png"
       }
     ],
-    "selectedColor": "#f70808"
+    "selectedColor": "#f70808",
+    "color": "#1296DB"
   },
   "cloud":true,
   "sitemapLocation": "sitemap.json"
