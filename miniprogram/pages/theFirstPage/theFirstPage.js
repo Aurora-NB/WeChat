@@ -1,7 +1,6 @@
 const db = wx.cloud.database()
 const usres = db.collection('users')
 const music = db.collection('music')
-const phtotos = db.collection('phtotos')
 var app = getApp()
 var util = require('../../utils/util.js');
 Page({
@@ -32,8 +31,10 @@ Page({
     var time = util.formatTime(new Date())
     music.get({
       success: res => {
-        console(res)
-      }
+        console.log(4);
+        console.log(res)
+      },
+      fail:console.error
     })
     usres.get({
       success: res => {

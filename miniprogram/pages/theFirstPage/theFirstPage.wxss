@@ -125,4 +125,5 @@
 /* 对号的样式 */
 .icon-ok {
   width: 10vw;
+  height: auto;
 }
