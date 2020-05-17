@@ -18,7 +18,7 @@
 			<image class="cricle" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{!item.hasdone}}" src="../../image/yuan.png" mode="widthFix"></image>
 			<view class="text-dir">{{item.dimension}}</view>
 			<view class="tags" wx:for="{{item.tag}}" wx:key="*this" wx:for-item="it">
-				<view class="tag-detail" style="background-color:{{item.tagscolor[index]}}"><text wx:if="{{it!=''&&item.tagscolor[index]!=''}}" >{{it}}</text></view>
+				<view class="tag-detail" style="background-color:{{item.tagscolor[index]}}" wx:if="{{it!=''&&item.tagscolor[index]!=''}}" >{{it}}</view>
 			</view>
 		</view>
 	</view>

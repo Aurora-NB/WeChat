@@ -111,8 +111,8 @@
 }
 
 .tag-detail {
-  height: 40rpx;
-  width: 50rpx;
+  height: 50rpx;
+  width: 90rpx;
   margin: 10rpx;
   display: flex;
   direction: row;
