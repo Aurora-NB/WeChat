@@ -1,5 +1,6 @@
 const db = wx.cloud.database()
 const usres = db.collection('users')
+const music = db.collection('music')
 const phtotos = db.collection('phtotos')
 var app = getApp()
 var util = require('../../utils/util.js');
@@ -8,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listEvent: []
+    listEvent: [],
+    musicUrl: ''
   },
   onLoad: function (options) {
     var openid;
@@ -27,11 +29,13 @@ Page({
       title: '正在加载界面',
       mask: true
     })
-    var time = util.formatTime(new Date());
-    usres.where({
-      time: time,
-      _openid: openid
-    }).get({
+    var time = util.formatTime(new Date())
+    music.get({
+      success: res => {
+        console(res)
+      }
+    })
+    usres.get({
       success: res => {
         // 如果没有则引导用户添加日常
         if (res.data.length === 0) {
