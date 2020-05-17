@@ -112,13 +112,13 @@
 
 .tag-detail {
   height: 40rpx;
-  width: 60rpx;
+  width: 50rpx;
   margin: 10rpx;
   display: flex;
   direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 1em;
+  border-radius: 3em;
   font-size: x-small;
 }
 
