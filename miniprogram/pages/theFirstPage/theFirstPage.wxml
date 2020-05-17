@@ -6,19 +6,23 @@
 
 	<!-- 下面是事件最上面的框 -->
 	<view class="event-top">
-		<view >嘿!你的日常(～￣▽￣)～</view>
+		<view>嘿!你的日常(～￣▽￣)～</view>
 		<navigator url='/miniprogram/pages/newevent/newevent' bindtap="eventtoptap" class="icon-jiahao iconfont plus-css"></navigator>
 	</view>
 	<!-- 事件的地方 -->
 	<view class="event-continer" wx:for="{{listEvent}}" wx:key="*this">
 
 		<view class="events" catchtap="eventTap" data-index="{{item.index}}">
-			<!-- <icon size="20" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" type="{{'success'}}" ></icon> -->
-			<image class="icon-ok" src="../../image/success.png" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" mode="widthFix"></image>
-			<image class="cricle" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{!item.hasdone}}" src="../../image/yuan.png" mode="widthFix"></image>
-			<view class="text-dir">{{item.dimension}}</view>
-			<view class="tags" wx:for="{{item.tag}}" wx:key="*this" wx:for-item="it">
-				<view class="tag-detail" style="background-color:{{item.tagscolor[index]}}" wx:if="{{it!=''&&item.tagscolor[index]!=''}}" >{{it}}</view>
+			<view class="left">
+				<!-- <icon size="20" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" type="{{'success'}}" ></icon> -->
+				<image class="icon-ok" src="../../image/success.png" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}"></image>
+				<image class="cricle" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{!item.hasdone}}" src="../../image/yuan.png"></image>
+				<view class="text-dir">{{item.dimension}}</view>
+			</view>
+			<view class="tagcontiner">
+				<view class="tags" wx:for="{{item.tag}}" wx:key="*this" wx:for-item="it">
+					<view class="tag-detail" style="background-color:{{item.tagscolor[index]}}" wx:if="{{it!=''&&item.tagscolor[index]!=''}}">{{it}}</view>
+				</view>
 			</view>
 		</view>
 	</view>
