@@ -68,15 +68,10 @@
   background-color: white;
 }
 
-/* 圆形图片 */
-.cricle {
-  width: 10vw;
-  height: auto;
-}
+
 
 .text-dir {
   display: flex;
-  width: 80vw;
   font-size: large;
   margin-left: 10px;
 }
@@ -91,6 +86,7 @@
   height: 13vw;
   margin-top: 1vw;
   width: 90%;
+  justify-content: space-between;
 }
 
 .event-continer {
@@ -121,8 +117,19 @@
   border-radius: 3em;
   font-size: x-small;
 }
-
+/* 圆形图片 */
+.cricle {
+  width: 55rpx;
+  height: 55rpx;
+}
 /* 对号的样式 */
 .icon-ok {
-  width: 10vw;
+  width: 55rpx;
+  height: 55rpx;
+}
+.tagcontiner{
+  display: flex;
+}
+.left{
+  display: flex;
 }
