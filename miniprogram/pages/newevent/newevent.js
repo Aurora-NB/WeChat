@@ -131,21 +131,8 @@ Page({
   },
   //标签光标消失的事件
   biaoqian(e) {
-    var tags = this.data.tags
-    var tagscolor = this.data.tagscolor
-    var tagsmirrorcolor = this.data.tagsmirrorcolor
-    tagscolor.sort(function () {
-      return Math.random() - 0.5;
-    });
-    if (tags.length < 3) {
-      tags.push(e.detail.value);
-      this.setData({
-        tags: tags,
-        baioqianvalue: '',
-        tagscolor: tagscolor,
-        biaoqianplacehold:'输入标签'
-      })
-    }
+console.log(e);
+
   },
   //图片简单的上传操作
   photoload(e) {
