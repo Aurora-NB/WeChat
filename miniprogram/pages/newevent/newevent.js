@@ -1,6 +1,7 @@
 const db = wx.cloud.database()
 const phtotos = db.collection('phtotos')
 const usres = db.collection('users')
+const usersDaily = db.collection('usersDaily')
 var util = require('../../utils/util.js');
 Page({
   /**
@@ -22,7 +23,9 @@ Page({
     tapexist: [false, false, false],
     tagscolor: ['rab(0,49,79)', 'rgb(250,227,123)', 'rgb(113,150,159)', 'rgb(255,150,128)', 'rgb(254,67,101)', 'rgb(229,187,129)', 'rgb(205,179,128)', 'rgb(140, 210, 225)', 'rgb(13, 29, 40)', 'rgb(247, 184, 69)', 'rgb(154, 196, 219)', 'rgb(174, 50, 81)', 'rgb(221, 178, 188)', 'rgb(171, 163, 171)', 'rgb(11, 62, 102)', 'rgb(219, 175, 167)', 'rgb(209, 230, 166)', 'rgb(204, 171, 219)', 'rgb(118, 204, 232)', 'rgb(213, 166, 221)', 'rgb(197, 230, 241)', 'rgb(196, 162, 119)', 'rgb(235, 214, 160)', 'rgb(201, 188, 201)', 'rgb(120, 78, 62)', 'rgb(219, 111, 49)', 'rgb(254, 201, 47)', 'rgb(28, 150, 215)', 'rgb(130, 199, 137)'],
     tagsmirrorcolor: [],
-    colorindex: 0
+    colorindex: 0,
+    datasrcs:["../../image/data (1).png","../../image/data.png"],
+    dataindex:0
 
   },
 
@@ -86,6 +89,7 @@ Page({
         var date = new Date().getTime()
         console.log(tagsmirrorcolor3);
         setTimeout(function () {
+          if(data. dataindex===0){
           usres.add({
             data: {
               tag: tags,
@@ -101,10 +105,28 @@ Page({
             },
             success: res => {
               console.log(res);
-
             }
-
           })
+        }
+        else if(data. dataindex===1){
+          usersDaily.add({
+            data: {
+              tag: tags,
+              tagscolor: tagsmirrorcolor,
+              imgPath: data.listEvent.imgPath,
+              fileID: data.fileID,
+              detail: detail,
+              dimension: dimension,
+              // index:data.listEvent.index,
+              date: date,
+              time: time,
+              hasdone: false
+            },
+            success: res => {
+              console.log(res);
+            }
+          })
+       }
           //要延时执行的代码
           wx.reLaunch({
             url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + detail + '&header=' + dimension + ' &tagsmirrorcolor1=' + tagsmirrorcolor1 + '&tagsmirrorcolor2=' + tagsmirrorcolor2 + '&tagsmirrorcolor3=' + tagsmirrorcolor3 + '&imgPath=' + imgPath + '&fileID=' + fileID + '&type=newEvent' + '&time=' + time,
@@ -269,5 +291,19 @@ console.log(e);
         biaoqianplacehold:'输入标签'
       })
     }
+  },
+  datachange(e){
+    var dataindex=this.data.dataindex;
+    if(dataindex===0)
+    {
+      dataindex=1;
+    }
+    else if(dataindex===1)
+    {
+      dataindex=0;
+    }
+    this.setData({
+      dataindex:dataindex
+    })
   }
 })

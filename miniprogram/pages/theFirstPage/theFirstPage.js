@@ -2,6 +2,7 @@ const db = wx.cloud.database()
 const usres = db.collection('users')
 const music = db.collection('music')
 var app = getApp()
+const usersDaily = db.collection('usersDaily')
 var util = require('../../utils/util.js');
 Page({
   /**
@@ -36,86 +37,63 @@ Page({
       },
       fail:console.error
     })
-    usres.get({
+    var listEvent = this.data.listEvent
+    usres.where({
+      time:time
+    }).get({
       success: res => {
-        // 如果没有则引导用户添加日常
-        if (res.data.length === 0) {
-          wx.hideLoading()
-          wx.showModal({
-            title: '',
-            content: '你还没有任何日常呢，快去添加吧！',
-            success: res => {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: '../newevent/newevent',
-                })
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-        } else {
-
-          for (var i = 0; i < res.data.length; i++) {
-            var listEvent = this.data.listEvent
-            res.data[i].index = listEvent.length
-            listEvent.push(res.data[i])
+        console.log(res);
+        for (var i = 0; i < res.data.length; i++) {
+          listEvent.push(res.data[i])
           }
-          console.log(res);
-          setTimeout(
-            () => {
-              wx.hideLoading()
-              this.setData({
-                listEvent: listEvent
-              })
-            }, 200)
-        }
-      }
+      },
+      fail:console.error
     })
-    //新增事件
-    // if (options.type === 'newEvent') {
-    //   console.log('new', options)
-    //   var listEvent = this.data.listEvent
-    //   var l = listEvent.length
-    //   if (options.dimension) {
-    //     listEvent.push({
-    //       dimension: options.dimension,
-    //       detail: options.detail,
-    //       tag: [
-    //         options.tags0 === 'undefined' ? '' : options.tags0,
-    //         options.tags1 === 'undefined' ? '' : options.tags1,
-    //         options.tags2 === 'undefined' ? '' : options.tags2
-    //       ],
-    //       index: l,
-    //       hasdone: false,
-    //       time : options.time,
-    //       imgpath: options.imgpath,
-    //       tagscolor: [options.tagsmirrorcolor1 === 'undefined' ? '' : options.tagsmirrorcolor1, options.tagsmirrorcolor2 === 'undefined' ? '' : options.tagsmirrorcolor2, options.tagsmirrorcolor3 === 'undefined' ? '' : options.tagsmirrorcolor3]
-    //     })
-    //   }
-    // }
-    // else
-    //  if (options.type === 'saveEvent') {
-    //   console.log('save', options)
-    //   //保存事件
-    //   var list = this.data.listEvent
-    //   var index=options.index-0;
-    //   list[index].dimension = options.dimension
-    //   list[index].detail = options.detail
-    //   this.setData({
-    //     listEvent: list
-    //   })
-    // } 
-    // else 
-    // if (options.type === 'deleteEvent') {
-    //   //删除事件
-    //   console.log('delete', options)
-    //   var list = this.data.listEvent
-    //   list.splice(options.index, 1)
-    //   this.setData({
-    //     listEvent: list
-    //   })
-    // }
+    setTimeout(()=>{
+      usersDaily.get({
+        success:res=>{
+          console.log(res);
+          for (var i = 0; i < res.data.length; i++) {
+            listEvent.push(res.data[i])
+            console.log(listEvent);
+          }
+          console.log(listEvent);
+          for (var i = 0; i < listEvent.length; i++) {
+            listEvent[i].index=i;
+          }
+          console.log(listEvent)
+          // 如果没有则引导用户添加日常
+          if (listEvent.length === 0) {
+            wx.hideLoading()
+            wx.showModal({
+              title: '',
+              content: '你还没有任何日常呢，快去添加吧！',
+              success: res => {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '../newevent/newevent',
+                  })
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          } else {
+            console.log(res);
+            setTimeout(
+              () => {
+                wx.hideLoading()
+                this.setData({
+                  listEvent: listEvent
+                })
+              }, 200)
+          }
+        },
+        fail:console.error
+      })
+    },20)
+   
+   
   },
   //圆圈被点击
   circleTap: function (e) {

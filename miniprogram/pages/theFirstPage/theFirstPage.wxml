@@ -6,7 +6,8 @@
 
 	<!-- 下面是事件最上面的框 -->
 	<view class="event-top">
-		<view>嘿!你的日常(～￣▽￣)～</view>
+		<view>嘿!你的日常(☞ﾟヮﾟ)☞</view>
+		<!-- (～￣▽￣)～ -->
 		<navigator url='/miniprogram/pages/newevent/newevent' bindtap="eventtoptap" class="icon-jiahao iconfont plus-css"></navigator>
 	</view>
 	<!-- 事件的地方 -->
