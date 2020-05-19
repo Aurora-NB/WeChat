@@ -34,9 +34,9 @@
 		<image wx:if="{{imgPath}}" class="download" src="{{imgPath}}" mode="widthFix" bindtap="photoload">
 		</image>
 	</view> -->
-	<view>
-	<image src="{{datasrcs[dataindex]}}" style="width:150rpx; "
-	mode="widthFix" bindtap="datachange">
+	<view class="datapase"  bindtap="datachange">
+	<image src="{{datasrcs[dataindex]}}" style="width:100rpx; height:100rpx;"
+	>
 	</image>
 	</view>
 	<!-- 提交按钮 -->

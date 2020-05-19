@@ -92,6 +92,7 @@ Page({
           if(data. dataindex===0){
           usres.add({
             data: {
+              Daily:false,
               tag: tags,
               tagscolor: tagsmirrorcolor,
               imgPath: data.listEvent.imgPath,
@@ -111,6 +112,7 @@ Page({
         else if(data. dataindex===1){
           usersDaily.add({
             data: {
+              Daily:true,
               tag: tags,
               tagscolor: tagsmirrorcolor,
               imgPath: data.listEvent.imgPath,
@@ -293,6 +295,8 @@ console.log(e);
     }
   },
   datachange(e){
+    console.log(e);
+    
     var dataindex=this.data.dataindex;
     if(dataindex===0)
     {

@@ -52,6 +52,11 @@ Page({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
       })
+      setTimeout(()=>{
+        wx.reLaunch({
+          url:'../theFirstPage/theFirstPage'
+        })
+      },500)
     }
   },
   about: function () {

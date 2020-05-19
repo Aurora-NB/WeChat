@@ -99,7 +99,7 @@
   min-height: 8vw;
   font-size: 6vw;
   font-weight: 900;
-  width: 96vw;
+  width: 80vw;
   padding-left: 3vw;
   padding-right: 2vw;
   padding-bottom: 1vw;
@@ -146,4 +146,9 @@
   display: inline-block;
   border-radius: 1em;
   margin-left: 1.3vw;
+}
+.datapase{
+  position: absolute;
+  right: 0;
+  top: 0;
 }

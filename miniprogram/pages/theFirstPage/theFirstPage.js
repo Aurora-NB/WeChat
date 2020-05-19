@@ -13,86 +13,107 @@ Page({
     musicUrl: ''
   },
   onLoad: function (options) {
-    var openid;
-    wx.cloud.callFunction({
-      // 云函数名称
-      name: 'getApid',
-      // 传给云函数的参数
-      data: {},
-      success: function (res) {
-        openid = res.openid
-        console.log(res);
-      },
-      fail: console.error
-    })
-    wx.showLoading({
-      title: '正在加载界面',
-      mask: true
-    })
-    var time = util.formatTime(new Date())
-    music.get({
-      success: res => {
-        console.log(4);
-        console.log(res)
-      },
-      fail:console.error
-    })
-    var listEvent = this.data.listEvent
-    usres.where({
-      time:time
-    }).get({
-      success: res => {
-        console.log(res);
-        for (var i = 0; i < res.data.length; i++) {
-          listEvent.push(res.data[i])
-          }
-      },
-      fail:console.error
-    })
-    setTimeout(()=>{
-      usersDaily.get({
-        success:res=>{
-          console.log(res);
-          for (var i = 0; i < res.data.length; i++) {
-            listEvent.push(res.data[i])
-            console.log(listEvent);
-          }
-          console.log(listEvent);
-          for (var i = 0; i < listEvent.length; i++) {
-            listEvent[i].index=i;
-          }
-          console.log(listEvent)
-          // 如果没有则引导用户添加日常
-          if (listEvent.length === 0) {
-            wx.hideLoading()
-            wx.showModal({
-              title: '',
-              content: '你还没有任何日常呢，快去添加吧！',
-              success: res => {
-                if (res.confirm) {
-                  wx.redirectTo({
-                    url: '../newevent/newevent',
-                  })
-                } else if (res.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
-            })
-          } else {
+     wx.getUserInfo({
+      success:res=>{
+        var openid;
+        wx.cloud.callFunction({
+          // 云函数名称
+          name: 'getApid',
+          // 传给云函数的参数
+          data: {},
+          success: function (res) {
+            openid = res.openid
             console.log(res);
-            setTimeout(
-              () => {
+          },
+          fail: console.error
+        })
+        wx.showLoading({
+          title: '正在加载界面',
+          mask: true
+        })
+        var time = util.formatTime(new Date())
+        music.get({
+          success: res => {
+            console.log(4);
+            console.log(res)
+          },
+          fail:console.error
+        })
+        var listEvent = this.data.listEvent
+        usres.where({
+          time:time
+        }).get({
+          success: res => {
+            console.log(res);
+            for (var i = 0; i < res.data.length; i++) {
+              listEvent.push(res.data[i])
+              }
+          },
+          fail:console.error
+        })
+        setTimeout(()=>{
+          usersDaily.get({
+            success:res=>{
+              console.log(res);
+              for (var i = 0; i < res.data.length; i++) {
+                listEvent.push(res.data[i])
+                console.log(listEvent);
+              }
+              console.log(listEvent);
+              for (var i = 0; i < listEvent.length; i++) {
+                listEvent[i].index=i;
+              }
+              console.log(listEvent)
+              // 如果没有则引导用户添加日常
+              if (listEvent.length === 0) {
                 wx.hideLoading()
-                this.setData({
-                  listEvent: listEvent
+                wx.showModal({
+                  title: '',
+                  content: '你还没有任何日常呢，快去添加吧！',
+                  success: res => {
+                    if (res.confirm) {
+                      wx.redirectTo({
+                        url: '../newevent/newevent',
+                      })
+                    } else if (res.cancel) {
+                      console.log('用户点击取消')
+                    }
+                  }
                 })
-              }, 200)
-          }
-        },
-        fail:console.error
-      })
-    },20)
+              } else {
+                console.log(res);
+                setTimeout(
+                  () => {
+                    this.setData({
+                      listEvent: listEvent
+                    })
+                    wx.hideLoading()
+                  }, 200)
+              }
+            },
+            fail:console.error
+          })
+        },100)
+      },
+      fail:error=>{
+        console.log(error)
+        wx.showToast({
+          title: '请登录后再试',
+          icon: 'none',
+          duration: 1500,
+          mask:true
+        })
+        setTimeout(
+          () => {
+            wx.reLaunch({
+              url: '../Individuals/Individuals',
+            })
+          }, 800
+        )
+      }
+    })
    
+    
    
   },
   //圆圈被点击
