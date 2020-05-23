@@ -120,6 +120,7 @@ Page({
   circleTap: function (e) {
     app.changeEvent(e, this)
     var list = this.data.listEvent
+    if(!list[e.currentTarget.dataset.index - 0].Daily){
     usres.doc(list[e.currentTarget.dataset.index - 0]._id).update({
       data: {
         hasdone: list[e.currentTarget.dataset.index].hasdone
@@ -127,8 +128,19 @@ Page({
       },
       success: res => {
         console.log(res);
-      }
+      },fail:console.error
     })
+  }
+  else{
+    usersDaily.doc(list[e.currentTarget.dataset.index - 0]._id).update({
+      data: {
+        hasdone: list[e.currentTarget.dataset.index].hasdone
+      },
+      success: res => {
+        console.log(res);
+      },fail:console.error
+    })
+  }
     var sn = true
     for (var i = 0; i < list.length; i++) {
       if (list[i].hasdone === false) sn = false
@@ -184,5 +196,39 @@ Page({
         )
       }
     })
+  },
+  // 长时间点击事件
+  circleLongTap(e){
+    console.log(e);
+    var list = this.data.listEvent
+    list[e.currentTarget.dataset.index - 0].Daily=!list[e.currentTarget.dataset.index - 0].Daily
+    if(!list[e.currentTarget.dataset.index - 0].Daily){
+      usres.doc(list[e.currentTarget.dataset.index - 0]._id).update({
+        data: {
+         Daily:!list[e.currentTarget.dataset.index - 0].Daily
+  
+        },
+        success: res => {
+          console.log(res);
+        },
+        fail:console.error
+      })
+    }
+    else{
+      usersDaily.doc(list[e.currentTarget.dataset.index - 0]._id).update({
+        data: {
+          Daily:!list[e.currentTarget.dataset.index - 0].Daily
+   
+         },
+         success: res => {
+           console.log(res);
+         },
+         fail:console.error
+      })
+    }
+    this.setData({
+      listEvent:list
+    })
+    
   }
 })
