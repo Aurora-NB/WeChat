@@ -202,28 +202,52 @@ Page({
     console.log(e);
     var list = this.data.listEvent
     list[e.currentTarget.dataset.index - 0].Daily=!list[e.currentTarget.dataset.index - 0].Daily
-    if(!list[e.currentTarget.dataset.index - 0].Daily){
-      usres.doc(list[e.currentTarget.dataset.index - 0]._id).update({
-        data: {
-         Daily:!list[e.currentTarget.dataset.index - 0].Daily
-  
-        },
-        success: res => {
+    if(list[e.currentTarget.dataset.index - 0].Daily){
+      usres.doc(list[e.currentTarget.dataset.index - 0]._id).remove({
+        success:res=>{
           console.log(res);
-        },
-        fail:console.error
+        }
+      })
+      usersDaily.add({
+        data:{
+             _id:list[e.currentTarget.dataset.index - 0]._id,
+              Daily:true,
+              tag: list[e.currentTarget.dataset.index - 0].tag,
+              tagscolor: list[e.currentTarget.dataset.index - 0].tagscolor,
+              imgPath: list[e.currentTarget.dataset.index - 0].imgPath,
+              fileID:list[e.currentTarget.dataset.index - 0].fileID,
+              detail: list[e.currentTarget.dataset.index - 0].detail,
+              dimension: list[e.currentTarget.dataset.index - 0].dimension,
+              // index:data.listEvent.index,
+              date: list[e.currentTarget.dataset.index - 0].date,
+              time: list[e.currentTarget.dataset.index - 0].time,
+              hasdone: false
+        }
       })
     }
     else{
-      usersDaily.doc(list[e.currentTarget.dataset.index - 0]._id).update({
-        data: {
-          Daily:!list[e.currentTarget.dataset.index - 0].Daily
-   
-         },
-         success: res => {
-           console.log(res);
-         },
-         fail:console.error
+      usersDaily.doc(list[e.currentTarget.dataset.index - 0]._id).remove({
+        success:res=>{
+          console.log(res);
+          console.log(123456789);
+          
+        }
+      })
+      usres.add({
+        data:{
+              _id:list[e.currentTarget.dataset.index - 0]._id,
+              Daily:false,
+              tag: list[e.currentTarget.dataset.index - 0].tag,
+              tagscolor: list[e.currentTarget.dataset.index - 0].tagscolor,
+              imgPath: list[e.currentTarget.dataset.index - 0].imgPath,
+              fileID:list[e.currentTarget.dataset.index - 0].fileID,
+              detail: list[e.currentTarget.dataset.index - 0].detail,
+              dimension: list[e.currentTarget.dataset.index - 0].dimension,
+              // index:data.listEvent.index,
+              date: list[e.currentTarget.dataset.index - 0].date,
+              time: list[e.currentTarget.dataset.index - 0].time,
+              hasdone: false
+        }
       })
     }
     this.setData({
