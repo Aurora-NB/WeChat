@@ -1,8 +1,5 @@
 <view>
-	<!-- 音乐组件 -->
-	<view class="music-c">
-		音乐组件
-	</view>
+	
 
 	<!-- 下面是事件最上面的框 -->
 	<view class="event-top">
@@ -20,9 +17,9 @@
 				<!-- <icon size="20" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" type="{{'success'}}" ></icon> -->
 				<image class="icon-ok" src="../../image/success.png" data-index="{{item.index}}" catchlongtap="circleLongTap" catchtap="circleTap" wx:if="{{item.hasdone&&!item.Daily}}"></image>
 				<image class="cricle" data-index="{{item.index}}" catchlongtap="circleLongTap" catchtap="circleTap" wx:if="{{!item.hasdone&&!item.Daily}}" src="../../image/yuan.png"></image>
-				<image src="../../image/data (1).png" class="cricle" data-index="{{item.index}}" catchlongtap="circleLongTap" catchtap="circleTap" wx:if="{{!item.hasdone&&item.Daily}}">
+				<image src="../../image/data (1).png" class="sun" data-index="{{item.index}}" catchlongtap="circleLongTap" catchtap="circleTap" wx:if="{{!item.hasdone&&item.Daily}}">
 				</image>
-				<image src="../../image/data.png" class="cricle" data-index="{{item.index}}"  catchlongtap="circleLongTap" catchtap="circleTap" wx:if="{{item.hasdone&&item.Daily}}">
+				<image src="../../image/data.png" class="sun" data-index="{{item.index}}"  catchlongtap="circleLongTap" catchtap="circleTap" wx:if="{{item.hasdone&&item.Daily}}">
 				</image>
 				<view class="text-dir">{{item.dimension}}</view>
 			</view>
