@@ -133,3 +133,10 @@
 .left{
   display: flex;
 }
+.gradual{
+  font-weight: bold;
+  background: linear-gradient(to right, rgb(245,179,181),rgb(210,95,109));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

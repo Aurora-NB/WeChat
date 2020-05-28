@@ -1,6 +1,7 @@
 const db = wx.cloud.database()
 const phtotos = db.collection('phtotos')
 const usres = db.collection('users')
+const usersDaily = db.collection('usersDaily')
 var util = require('../../utils/util.js');
 Page({
   /**
@@ -22,7 +23,9 @@ Page({
     tapexist: [false, false, false],
     tagscolor: ['#fa5a5a','#f0d264','#82c8a0','#7fccde','#6698cb','#cb99c5'],
     tagsmirrorcolor: [],
-    colorindex: 0
+    colorindex: 0,
+    datasrcs:["../../image/data (1).png","../../image/data.png"],
+    dataindex:0
 
   },
 
@@ -86,8 +89,10 @@ Page({
         var date = new Date().getTime()
         console.log(tagsmirrorcolor3);
         setTimeout(function () {
+          if(data. dataindex===0){
           usres.add({
             data: {
+              Daily:false,
               tag: tags,
               tagscolor: tagsmirrorcolor,
               imgPath: data.listEvent.imgPath,
@@ -101,10 +106,29 @@ Page({
             },
             success: res => {
               console.log(res);
-
             }
-
           })
+        }
+        else if(data. dataindex===1){
+          usersDaily.add({
+            data: {
+              Daily:true,
+              tag: tags,
+              tagscolor: tagsmirrorcolor,
+              imgPath: data.listEvent.imgPath,
+              fileID: data.fileID,
+              detail: detail,
+              dimension: dimension,
+              // index:data.listEvent.index,
+              date: date,
+              time: time,
+              hasdone: false
+            },
+            success: res => {
+              console.log(res);
+            }
+          })
+       }
           //要延时执行的代码
           wx.reLaunch({
             url: '../theFirstPage/theFirstPage?tags0=' + tags0 + '&tags1=' + tags1 + '&tags2=' + tags2 + '&index=' + index + '&dimension=' + detail + '&header=' + dimension + ' &tagsmirrorcolor1=' + tagsmirrorcolor1 + '&tagsmirrorcolor2=' + tagsmirrorcolor2 + '&tagsmirrorcolor3=' + tagsmirrorcolor3 + '&imgPath=' + imgPath + '&fileID=' + fileID + '&type=newEvent' + '&time=' + time,
@@ -269,5 +293,21 @@ console.log(e);
         biaoqianplacehold:'输入标签'
       })
     }
+  },
+  datachange(e){
+    console.log(e);
+    
+    var dataindex=this.data.dataindex;
+    if(dataindex===0)
+    {
+      dataindex=1;
+    }
+    else if(dataindex===1)
+    {
+      dataindex=0;
+    }
+    this.setData({
+      dataindex:dataindex
+    })
   }
 })

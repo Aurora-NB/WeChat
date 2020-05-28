@@ -1,8 +1,8 @@
 const db = wx.cloud.database()
 const usres = db.collection('users')
 const music = db.collection('music')
-const phtotos = db.collection('phtotos')
 var app = getApp()
+const usersDaily = db.collection('usersDaily')
 var util = require('../../utils/util.js');
 Page({
   /**
@@ -13,113 +13,114 @@ Page({
     musicUrl: ''
   },
   onLoad: function (options) {
-    var openid;
-    wx.cloud.callFunction({
-      // 云函数名称
-      name: 'getApid',
-      // 传给云函数的参数
-      data: {},
-      success: function (res) {
-        openid = res.openid
-        console.log(res);
-      },
-      fail: console.error
-    })
-    wx.showLoading({
-      title: '正在加载界面',
-      mask: true
-    })
-    var time = util.formatTime(new Date())
-    music.get({
-      success: res => {
-        console(res)
-      }
-    })
-    usres.get({
-      success: res => {
-        // 如果没有则引导用户添加日常
-        if (res.data.length === 0) {
-          wx.hideLoading()
-          wx.showModal({
-            title: '',
-            content: '你还没有任何日常呢，快去添加吧！',
-            success: res => {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: '../newevent/newevent',
-                })
-              } else if (res.cancel) {
-                console.log('用户点击取消')
+     wx.getUserInfo({
+      success:res=>{
+        var openid;
+        wx.cloud.callFunction({
+          // 云函数名称
+          name: 'getApid',
+          // 传给云函数的参数
+          data: {},
+          success: function (res) {
+            openid = res.openid
+            console.log(res);
+          },
+          fail: console.error
+        })
+        wx.showLoading({
+          title: '正在加载界面',
+          mask: true
+        })
+        var time = util.formatTime(new Date())
+        music.get({
+          success: res => {
+            console.log(4);
+            console.log(res)
+          },
+          fail:console.error
+        })
+        var listEvent = this.data.listEvent
+        usres.where({
+          time:time
+        }).get({
+          success: res => {
+            console.log(res);
+            for (var i = 0; i < res.data.length; i++) {
+              listEvent.push(res.data[i])
               }
-            }
+          },
+          fail:console.error
+        })
+        setTimeout(()=>{
+          usersDaily.get({
+            success:res=>{
+              console.log(res);
+              for (var i = 0; i < res.data.length; i++) {
+                listEvent.push(res.data[i])
+                console.log(listEvent);
+              }
+              console.log(listEvent);
+              for (var i = 0; i < listEvent.length; i++) {
+                listEvent[i].index=i;
+              }
+              console.log(listEvent)
+              // 如果没有则引导用户添加日常
+              if (listEvent.length === 0) {
+                wx.hideLoading()
+                wx.showModal({
+                  title: '',
+                  content: '你还没有任何日常呢，快去添加吧！',
+                  success: res => {
+                    if (res.confirm) {
+                      wx.redirectTo({
+                        url: '../newevent/newevent',
+                      })
+                    } else if (res.cancel) {
+                      console.log('用户点击取消')
+                    }
+                  }
+                })
+              } else {
+                console.log(res);
+                setTimeout(
+                  () => {
+                    this.setData({
+                      listEvent: listEvent
+                    })
+                    wx.hideLoading()
+                  }, 200)
+              }
+            },
+            fail:console.error
           })
-        } else {
-
-          for (var i = 0; i < res.data.length; i++) {
-            var listEvent = this.data.listEvent
-            res.data[i].index = listEvent.length
-            listEvent.push(res.data[i])
-          }
-          console.log(res);
-          setTimeout(
-            () => {
-              wx.hideLoading()
-              this.setData({
-                listEvent: listEvent
-              })
-            }, 200)
-        }
+        },100)
+      },
+      fail:error=>{
+        console.log(error)
+        wx.showToast({
+          title: '请登录后再试',
+          icon: 'none',
+          duration: 1500,
+          mask:true
+        })
+        setTimeout(
+          () => {
+            wx.reLaunch({
+              url: '../Individuals/Individuals',
+            })
+          }, 800
+        )
       }
     })
-    //新增事件
-    // if (options.type === 'newEvent') {
-    //   console.log('new', options)
-    //   var listEvent = this.data.listEvent
-    //   var l = listEvent.length
-    //   if (options.dimension) {
-    //     listEvent.push({
-    //       dimension: options.dimension,
-    //       detail: options.detail,
-    //       tag: [
-    //         options.tags0 === 'undefined' ? '' : options.tags0,
-    //         options.tags1 === 'undefined' ? '' : options.tags1,
-    //         options.tags2 === 'undefined' ? '' : options.tags2
-    //       ],
-    //       index: l,
-    //       hasdone: false,
-    //       time : options.time,
-    //       imgpath: options.imgpath,
-    //       tagscolor: [options.tagsmirrorcolor1 === 'undefined' ? '' : options.tagsmirrorcolor1, options.tagsmirrorcolor2 === 'undefined' ? '' : options.tagsmirrorcolor2, options.tagsmirrorcolor3 === 'undefined' ? '' : options.tagsmirrorcolor3]
-    //     })
-    //   }
-    // }
-    // else
-    //  if (options.type === 'saveEvent') {
-    //   console.log('save', options)
-    //   //保存事件
-    //   var list = this.data.listEvent
-    //   var index=options.index-0;
-    //   list[index].dimension = options.dimension
-    //   list[index].detail = options.detail
-    //   this.setData({
-    //     listEvent: list
-    //   })
-    // } 
-    // else 
-    // if (options.type === 'deleteEvent') {
-    //   //删除事件
-    //   console.log('delete', options)
-    //   var list = this.data.listEvent
-    //   list.splice(options.index, 1)
-    //   this.setData({
-    //     listEvent: list
-    //   })
-    // }
+   
+    
+   
   },
   //圆圈被点击
   circleTap: function (e) {
     app.changeEvent(e, this)
     var list = this.data.listEvent
+    if(!list[e.currentTarget.dataset.index - 0].Daily){
     usres.doc(list[e.currentTarget.dataset.index - 0]._id).update({
       data: {
         hasdone: list[e.currentTarget.dataset.index].hasdone
@@ -127,8 +128,19 @@ Page({
       },
       success: res => {
         console.log(res);
-      }
+      },fail:console.error
     })
+  }
+  else{
+    usersDaily.doc(list[e.currentTarget.dataset.index - 0]._id).update({
+      data: {
+        hasdone: list[e.currentTarget.dataset.index].hasdone
+      },
+      success: res => {
+        console.log(res);
+      },fail:console.error
+    })
+  }
     var sn = true
     for (var i = 0; i < list.length; i++) {
       if (list[i].hasdone === false) sn = false
@@ -184,5 +196,63 @@ Page({
         )
       }
     })
+  },
+  // 长时间点击事件
+  circleLongTap(e){
+    console.log(e);
+    var list = this.data.listEvent
+    list[e.currentTarget.dataset.index - 0].Daily=!list[e.currentTarget.dataset.index - 0].Daily
+    if(list[e.currentTarget.dataset.index - 0].Daily){
+      usres.doc(list[e.currentTarget.dataset.index - 0]._id).remove({
+        success:res=>{
+          console.log(res);
+        }
+      })
+      usersDaily.add({
+        data:{
+             _id:list[e.currentTarget.dataset.index - 0]._id,
+              Daily:true,
+              tag: list[e.currentTarget.dataset.index - 0].tag,
+              tagscolor: list[e.currentTarget.dataset.index - 0].tagscolor,
+              imgPath: list[e.currentTarget.dataset.index - 0].imgPath,
+              fileID:list[e.currentTarget.dataset.index - 0].fileID,
+              detail: list[e.currentTarget.dataset.index - 0].detail,
+              dimension: list[e.currentTarget.dataset.index - 0].dimension,
+              // index:data.listEvent.index,
+              date: list[e.currentTarget.dataset.index - 0].date,
+              time: list[e.currentTarget.dataset.index - 0].time,
+              hasdone: false
+        }
+      })
+    }
+    else{
+      usersDaily.doc(list[e.currentTarget.dataset.index - 0]._id).remove({
+        success:res=>{
+          console.log(res);
+          console.log(123456789);
+          
+        }
+      })
+      usres.add({
+        data:{
+              _id:list[e.currentTarget.dataset.index - 0]._id,
+              Daily:false,
+              tag: list[e.currentTarget.dataset.index - 0].tag,
+              tagscolor: list[e.currentTarget.dataset.index - 0].tagscolor,
+              imgPath: list[e.currentTarget.dataset.index - 0].imgPath,
+              fileID:list[e.currentTarget.dataset.index - 0].fileID,
+              detail: list[e.currentTarget.dataset.index - 0].detail,
+              dimension: list[e.currentTarget.dataset.index - 0].dimension,
+              // index:data.listEvent.index,
+              date: list[e.currentTarget.dataset.index - 0].date,
+              time: list[e.currentTarget.dataset.index - 0].time,
+              hasdone: false
+        }
+      })
+    }
+    this.setData({
+      listEvent:list
+    })
+    
   }
 })
