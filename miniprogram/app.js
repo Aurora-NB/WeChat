@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    
     //获取屏幕高度
     wx.getSystemInfo({
       success: res => {
@@ -28,6 +29,47 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    console.log('小程序加载成功');
+    const db = wx.cloud.database()
+    const usres = db.collection('users')
+    var util = require('./utils/util.js');
+    var time = util.formatTime(new Date())
+    const  _ = db.command
+    usres.where({
+      time:_.not(_.eq(time))
+    }).get({
+      success:res=>{
+        console.log("删除开始");
+        for(var i=0;i<res.data.length;i++)
+       {
+        usres.doc( res.data[i]._id).remove({
+          success:res=>{
+            console.log(删除成功);
+            console.log(res);
+          }
+          })
+       }
+        console.log(res);
+      }
+    })
+    const usersDaily = db.collection('usersDaily')
+    usersDaily.where({
+      time:_.not(_.eq(time))
+    }).get({
+      success:res=>{
+        console.log(res);
+        for(var i=0;i<res.data.length;i++)
+       {
+         usersDaily.doc(res.data[i]._id).update({
+           data:{
+             hasdone:false,
+             time:time
+           }
+         })
+       }
+
+      }
+    })
 
     // 登录
     wx.login({
@@ -94,5 +136,13 @@ App({
     t.setData({
       listEvent: list
     })
-  }
+  },
+    /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+  
+    
+  },
+  
 })

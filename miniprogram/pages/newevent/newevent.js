@@ -102,7 +102,8 @@ Page({
               // index:data.listEvent.index,
               date: date,
               time: time,
-              hasdone: false
+              hasdone: false,
+              now:true
             },
             success: res => {
               console.log(res);
