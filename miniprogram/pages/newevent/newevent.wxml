@@ -1,3 +1,5 @@
+<view class="content">
+<image class='background' src="../../image/timg.jpg" mode="aspectFill"></image>
 <!-- 整个表单 -->
 <form bindsubmit="formSubmit">
 
@@ -13,7 +15,7 @@
 			<view class="icon-evnet" style="background-color:{{tagsmirrorcolor[index]}};">
 				<view class="icon-shoucang- iconfont icon-class" bindtap="biaoqian"></view>
 				<view class="biaoqian-input">
-					<input name="tapinput{{index}}" placeholder="标签" bindblur="biaoqianblur" maxlength="7" data-index="{{index}}" value="{{tags[index]}}"></input>
+					<input name="tapinput{{index}}" placeholder="标签" placeholder-style="color:white" bindblur="biaoqianblur" maxlength="7" data-index="{{index}}" value="{{tags[index]}}"></input>
 				</view>
 				<view class="deletebiaoqian iconfont icon-ziyuan" bindtap="deletetap" data-index="{{index}}"></view>
 			</view>
@@ -35,10 +37,12 @@
 		</image>
 	</view> -->
 	<view class="datapase"  bindtap="datachange">
-	<image src="{{datasrcs[dataindex]}}" style="width:100rpx; height:100rpx;"
+	<image src="{{datasrcs[dataindex]}}" style="width:100rpx; height:100rpx;padding-right:2.5vw;"
 	>
 	</image>
 	</view>
 	<!-- 提交按钮 -->
-	<view form-type="submit" bindtap="formSubmit" class="submit-button">提交</view>
+	<!-- <view form-type="submit" bindtap="formSubmit" class="submit-button">提交</view> -->
+	<button form-type="submit" bindtap="formSubmit" class="submit-button">提交</button>
 </form>
+</view>
