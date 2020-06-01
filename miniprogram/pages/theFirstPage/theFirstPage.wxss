@@ -142,7 +142,7 @@
   color: transparent;
 }
 .sun{
-  height: 75rpx;
-  width: 75rpx;
+  height: 55rpx;
+  width: 55rpx;
   align-self: center;
 }
