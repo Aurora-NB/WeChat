@@ -255,4 +255,9 @@ Page({
     })
     
   }
+  ,
+  eventmove(e){
+    console.log(e);
+    e.touches[0].pageX
+  }
 })
