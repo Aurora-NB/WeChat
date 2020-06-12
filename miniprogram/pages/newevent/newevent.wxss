@@ -1,4 +1,12 @@
 /*此处是标签的图标样式 */
+page{
+  width: 100%;
+  height: 100%;
+}
+.continer{
+  width: 100%;
+  height: 100%;
+}
 @font-face {
   font-family: "iconfont";
   src: url('//at.alicdn.com/t/font_1789111_dwfbszgyisb.eot?t=1588171437722');
@@ -155,6 +163,10 @@
   position: absolute;
   right: 0;
   top: 0;
+<<<<<<< HEAD
+=======
+
+>>>>>>> dad067a0a923eecc62ed4792d0308f8d8c9301b8
 }
 .bg2{
   width: 100%;
@@ -164,5 +176,9 @@
   top: 0;
   left: 0;
   z-index: -1;
+<<<<<<< HEAD
   opacity: 0.8;
+=======
+  opacity: 0.7;
+>>>>>>> dad067a0a923eecc62ed4792d0308f8d8c9301b8
 }
