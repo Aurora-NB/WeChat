@@ -98,7 +98,7 @@ page{
 
 .event-continer {
   background-color: #82838379;
-  padding: 1vw;
+  padding-top: 1vw;
   width: 100%;
   display: flex;
   direction: column;
