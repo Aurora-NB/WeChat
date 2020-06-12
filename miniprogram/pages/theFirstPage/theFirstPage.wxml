@@ -1,6 +1,6 @@
 <view>
 	
-
+	<image class="bg1" url="miniprogram/image/bg1.jpg"></image>
 	<!-- 下面是事件最上面的框 -->
 	<view class="event-top">
 		<view class="gradual">嘿!你的日常<image src="../../image/yanwenzi.gif" style="width:200rpx; height:60rpx;"></image></view>

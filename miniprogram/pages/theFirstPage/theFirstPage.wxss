@@ -147,3 +147,10 @@
   width: 55rpx;
   align-self: center;
 }
+.bg1{
+  width: 100%;
+  float: left;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
