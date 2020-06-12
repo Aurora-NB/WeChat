@@ -12,7 +12,7 @@
 	<!-- 事件的地方 -->
 	<view class="event-continer" wx:for="{{listEvent}}" wx:key="*this">
 
-		<view class="events" catchtap="eventTap" data-index="{{item.index}}">
+		<view class="events" catchtouchmove="eventmove" catchtap="eventTap" data-index="{{item.index}}">
 			<view class="left">
 				<!-- <icon size="20" data-index="{{item.index}}" catchtap="circleTap" wx:if="{{item.hasdone}}" type="{{'success'}}" ></icon> -->
 				<image class="icon-ok" src="../../image/success.png" data-index="{{item.index}}" catchlongtap="circleLongTap" catchtap="circleTap" wx:if="{{item.hasdone&&!item.Daily}}"></image>
