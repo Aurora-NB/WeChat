@@ -163,10 +163,6 @@ page{
   position: absolute;
   right: 0;
   top: 0;
-<<<<<<< HEAD
-=======
-
->>>>>>> dad067a0a923eecc62ed4792d0308f8d8c9301b8
 }
 .bg2{
   width: 100%;
@@ -176,9 +172,5 @@ page{
   top: 0;
   left: 0;
   z-index: -1;
-<<<<<<< HEAD
-  opacity: 0.8;
-=======
   opacity: 0.7;
->>>>>>> dad067a0a923eecc62ed4792d0308f8d8c9301b8
 }
