@@ -1,10 +1,8 @@
 <view>
-	
-	<image class="bg1" url="miniprogram/image/bg1.jpg"></image>
+		<image class="bg1" src="../../image/bg1.jpg"></image>
 	<!-- 下面是事件最上面的框 -->
 	<view class="event-top">
 		<view class="gradual">嘿!你的日常<image src="../../image/yanwenzi.gif" style="width:200rpx; height:60rpx;"></image></view>
-		
 		<!-- 其他可用颜文字 -->
 		<!-- (～￣▽￣)～ ༼ つ ◕_◕ ༽つ  (☞ﾟヮﾟ)☞   (づ￣ 3￣)づ   (￣▽￣)"  -->
 		<navigator url='/miniprogram/pages/newevent/newevent' bindtap="eventtoptap" class="icon-jiahao iconfont plus-css"></navigator>
@@ -30,6 +28,4 @@
 			</view>
 		</view>
 	</view>
-
-
 </view>

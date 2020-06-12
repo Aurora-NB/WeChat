@@ -1,6 +1,6 @@
 <!-- 整个表单 -->
 <form bindsubmit="formSubmit">
-
+	
 	<!--标题的输入  -->
 	<view class="header-view">
 		<input bindblur="headerblur" class="header-input" placeholder="标题" maxlength="15" value="{{listEvent.dimension}}"></input>

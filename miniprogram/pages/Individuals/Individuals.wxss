@@ -22,7 +22,6 @@ page{
   display: flex;
   align-items: center;
   padding-left: 10rpx;
-
 }
 
 .userhead {
