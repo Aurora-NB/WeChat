@@ -10,7 +10,9 @@ Page({
    */
   data: {
     listEvent: [],
-    musicUrl: ''
+    musicUrl: '',
+    usedlength:0,
+    way:0
   },
   onLoad: function (options) {
      wx.getUserInfo({
@@ -259,5 +261,21 @@ Page({
   eventmove(e){
     console.log(e);
     e.touches[0].pageX
+  },
+  touchstart(e){
+    this.setData({
+      usedlength: e.changedTouches[0].clientX,
+  })
+  },
+  touchend(e)
+  {
+    console.log(e);
+    var length=this.data.usedlength
+    if(length-e.changedTouches[0].clientX>30)
+    {
+      this.setData({
+        way:2
+      })
+    }
   }
 })

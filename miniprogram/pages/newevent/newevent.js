@@ -61,6 +61,8 @@ Page({
         n = 0;
       }
       if (n === 1) {
+        console.log(1233534351);
+        
         wx.showToast({
           icon: 'none',
           title: '提交成功',
@@ -90,6 +92,8 @@ Page({
         console.log(tagsmirrorcolor3);
         setTimeout(function () {
           if(data. dataindex===0){
+            console.log(12131);
+            
           usres.add({
             data: {
               Daily:false,
