@@ -96,5 +96,5 @@ button::after {
   position: relative;
   mix-blend-mode: screen;
   height: 17vw;
-  bottom:39vw;
+  bottom:40vw;
 }
